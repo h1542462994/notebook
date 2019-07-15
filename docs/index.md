@@ -1,17 +1,8 @@
-# Welcome to MkDocs
+# 个人笔记
 
-For full documentation visit [mkdocs.org](https://mkdocs.org).
+## 文档介绍
 
-## Commands
+此前我使用过`Jekyll`脚本搭建个人博客，其主要是按照时间来整理的，这种方式很难有序整理笔记，所以我使用了`mkdocs`来整理笔记。
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
+这本个人笔记主要用于作为备忘录或者开发文档的形式记录自己容易遗忘的知识点。
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
