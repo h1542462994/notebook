@@ -1,0 +1,995 @@
+
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+        <meta name="author" content="cht">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="zh">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>Android Native - 个人笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#2196f3">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue" data-md-color-accent="cyan">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#android-native" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="个人笔记" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              个人笔记
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Android Native
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="个人笔记" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    个人笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="主页" class="md-nav__link">
+      主页
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      编程笔记
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        编程笔记
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Android Native
+      </label>
+    
+    <a href="./" title="Android Native" class="md-nav__link md-nav__link--active">
+      Android Native
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bottomnavigationview-viewpager" title="BottomNavigationView + ViewPager" class="md-nav__link">
+    BottomNavigationView + ViewPager
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="观察者模式(数据驱动)" class="md-nav__link">
+    观察者模式(数据驱动)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="情景" class="md-nav__link">
+    情景
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="代码实现" class="md-nav__link">
+    代码实现
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" title="1.安装依赖" class="md-nav__link">
+    1.安装依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" title="2.创建存储类" class="md-nav__link">
+    2.创建存储类
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3observer" title="3.创建Observer和修改数据" class="md-nav__link">
+    3.创建Observer和修改数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" title="4.整合以上代码，并观察效果。" class="md-nav__link">
+    4.整合以上代码，并观察效果。
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kotlin2" title="kotlin优雅的异步方式：协程2" class="md-nav__link">
+    kotlin优雅的异步方式：协程2
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="情景" class="md-nav__link">
+    情景
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="代码实现" class="md-nav__link">
+    代码实现
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" title="1.安装依赖" class="md-nav__link">
+    1.安装依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" title="2.开启异步线程" class="md-nav__link">
+    2.开启异步线程
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="备忘录" class="md-nav__link">
+    备忘录
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="样式" class="md-nav__link">
+    样式
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="设置应用为无边框" class="md-nav__link">
+    设置应用为无边框
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="设置字体为粗体" class="md-nav__link">
+    设置字体为粗体
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cpp_index/" title="C++" class="md-nav__link">
+      C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kotlin_tomcat/" title="Kotlin For Tomcat" class="md-nav__link">
+      Kotlin For Tomcat
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deeplearning_index/" title="深度学习" class="md-nav__link">
+      深度学习
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      学科
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        学科
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1">
+    
+    <label class="md-nav__link" for="nav-3-1">
+      英语
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        英语
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../english_word/" title="单词" class="md-nav__link">
+      单词
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../resources/" title="资源整理" class="md-nav__link">
+      资源整理
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      开发文档
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        开发文档
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../regular/" title="文档编写规范" class="md-nav__link">
+      文档编写规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../doc_user/" title="用户系统API" class="md-nav__link">
+      用户系统API
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bottomnavigationview-viewpager" title="BottomNavigationView + ViewPager" class="md-nav__link">
+    BottomNavigationView + ViewPager
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="观察者模式(数据驱动)" class="md-nav__link">
+    观察者模式(数据驱动)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="情景" class="md-nav__link">
+    情景
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="代码实现" class="md-nav__link">
+    代码实现
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" title="1.安装依赖" class="md-nav__link">
+    1.安装依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" title="2.创建存储类" class="md-nav__link">
+    2.创建存储类
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3observer" title="3.创建Observer和修改数据" class="md-nav__link">
+    3.创建Observer和修改数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" title="4.整合以上代码，并观察效果。" class="md-nav__link">
+    4.整合以上代码，并观察效果。
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kotlin2" title="kotlin优雅的异步方式：协程2" class="md-nav__link">
+    kotlin优雅的异步方式：协程2
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="情景" class="md-nav__link">
+    情景
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="代码实现" class="md-nav__link">
+    代码实现
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" title="1.安装依赖" class="md-nav__link">
+    1.安装依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" title="2.开启异步线程" class="md-nav__link">
+    2.开启异步线程
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="备忘录" class="md-nav__link">
+    备忘录
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="样式" class="md-nav__link">
+    样式
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="设置应用为无边框" class="md-nav__link">
+    设置应用为无边框
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="设置字体为粗体" class="md-nav__link">
+    设置字体为粗体
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="android-native">Android Native<a class="headerlink" href="#android-native" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">提示</p>
+<p>Android开发框架(其中也包括全平台开发框架)除了<code class="codehilite">Native</code>外，还有<code class="codehilite">Flutter</code>、<code class="codehilite">ReactNative</code>以及本人一直调教不了的<code class="codehilite">Xamarin Forms</code>，本人所讲的教程主要围绕安卓原生应用展开。</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">读者须知</p>
+<p>该文章所涉及的代码为kotlin<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>，如果你使用的是Java，不要担心，稍微理解以下就可以了。</p>
+</div>
+<h2 id="bottomnavigationview-viewpager">BottomNavigationView + ViewPager<a class="headerlink" href="#bottomnavigationview-viewpager" title="Permanent link">&para;</a></h2>
+<h2 id="_1">观察者模式(数据驱动)<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="_2">情景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>直接通过<strong>事件</strong>修改UI视图虽然直观，但是随着规模的变大，我们很容易看到处理数据的逻辑和更新UI的逻辑会混用在一起，这样就显得凌乱，而且可能会产生数据和视图更新不一致的问题。我们称处理的模式被称为<mark class="critic">事件驱动模式</mark>。</p>
+<div class="admonition fail">
+<p class="admonition-title">事件驱动模式</p>
+<p>用户提交 -&gt; 事件触发器 (-&gt; 在UI树上传递事件) -&gt; 更改视图 and 修改数据存储 (-&gt;更新本地存储)</p>
+</div>
+<p>我们知道，UI是一种展示数据的界面，所以我们可以这样设计：通过修改数据，然后通知UI层去更改，这种处理的模式叫做<mark class="critic">数据驱动模式</mark></p>
+<div class="admonition success">
+<p class="admonition-title">数据驱动模式</p>
+<p>part1: 视图初始化 -&gt; 创建数据的Observer</p>
+<p>part2: 用户提交 -&gt; 修改数据 -&gt; 数据通知更改，并告诉Observer -&gt; Observer更改UI层</p>
+<p>数据驱动模式还可以更好的实现异步，在修改数据时使用异步调用，在更新UI时回到UI线程。</p>
+</div>
+<h3 id="_3">代码实现<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h4 id="1">1.安装依赖<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<p>打开<code class="codehilite">build.gradle(Module:app)</code>，在<code class="codehilite">dependencies</code>加入以下两行</p>
+<div class="codehilite"><pre><span></span>//viewModel(视图模型) includes(observer&lt;T&gt;)
+implementation &#39;androidx.lifecycle:lifecycle-extensions:2.0.0&#39;
+implementation &#39;androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0&#39;
+</pre></div>
+
+<h4 id="2">2.创建存储类<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
+<p>在这里使用全局的<code class="codehilite">Storage</code>类，该类的编写如下:</p>
+<div class="codehilite"><pre><span></span><span class="k">package</span> <span class="nn">com.tty.myday.data</span>
+
+<span class="k">import</span> <span class="nn">androidx.lifecycle.LiveData</span>
+<span class="k">import</span> <span class="nn">androidx.lifecycle.MutableLiveData</span>
+
+<span class="k">class</span> <span class="nc">Storage</span> <span class="k">private</span> <span class="k">constructor</span><span class="p">()</span> <span class="p">:</span><span class="n">ILoadable</span><span class="p">{</span>
+
+    <span class="k">override</span> <span class="k">var</span> <span class="py">isLoaded</span><span class="p">:</span> <span class="n">Boolean</span> <span class="p">=</span> <span class="k">false</span>
+
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//To init the Storage</span>
+        <span class="n">userName</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="s">&quot;cht&quot;</span>
+    <span class="p">}</span>
+
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">load</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//To load the Storage</span>
+        <span class="n">isLoaded</span> <span class="p">=</span> <span class="k">true</span>
+    <span class="p">}</span>
+
+    <span class="c1">//region props</span>
+    <span class="k">var</span> <span class="py">userName</span> <span class="p">=</span> <span class="n">MutableLiveData</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;()</span>
+    <span class="c1">//endregion</span>
+
+    <span class="k">companion</span> <span class="k">object</span> <span class="err">{</span>
+        <span class="k">private</span> <span class="k">var</span> <span class="py">instance</span><span class="p">:</span><span class="n">Storage</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span>
+
+        <span class="k">fun</span> <span class="nf">get</span><span class="p">():</span><span class="n">Storage</span><span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">instance</span> <span class="p">==</span> <span class="k">null</span><span class="p">){</span>
+                <span class="n">instance</span> <span class="p">=</span> <span class="n">Storage</span><span class="p">()</span>
+                <span class="n">instance</span><span class="o">!!</span><span class="p">.</span><span class="n">init</span><span class="p">()</span>
+            <span class="p">}</span>
+
+            <span class="k">return</span> <span class="n">instance</span><span class="o">!!</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h4 id="3observer">3.创建Observer和修改数据<a class="headerlink" href="#3observer" title="Permanent link">&para;</a></h4>
+<p>要实现观察者模式需要使用<code class="codehilite">MutableLiveData&lt;T&gt;</code>类的对象。1.该对象的<code class="codehilite">value</code>属性为内部存储的值，其内部重写了<code class="codehilite">setter</code>，使得其可以通知数据已经更改。2.该对象的<code class="codehilite">observe()</code>函数为创建观察器。使用该类可以更好的实现数据驱动。</p>
+<p>当你创建视图时你应该写以下代码：</p>
+<div class="codehilite"><pre><span></span><span class="c1">//一般在Activity的onCreate()内写</span>
+<span class="n">storage</span> <span class="p">=</span> <span class="n">Storage</span><span class="p">.</span><span class="k">get</span><span class="p">()</span>
+<span class="n">storage</span><span class="p">.</span><span class="n">userName</span><span class="p">.</span><span class="n">observe</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="n">Observer</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;(</span> <span class="n">value</span> <span class="p">-&gt;</span> <span class="p">{</span>
+    <span class="c1">//dosomething update UI</span>
+<span class="p">}))</span>
+</pre></div>
+
+<p>当你需要更改数据时可以编写以下代码</p>
+<div class="codehilite"><pre><span></span>storage.userName.value = &quot;xxx&quot;
+</pre></div>
+
+<div class="admonition warning">
+<p class="admonition-title">多线程操作</p>
+<p>更改数据需要在uiThread上执行，否则会发生错误java.lang.IllegalStateException: Cannot invoke setValue on a background thread。</p>
+</div>
+<h4 id="4">4.整合以上代码，并观察效果。<a class="headerlink" href="#4" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span>// onCreate()
+storage = Storage.get()
+storage.userName.observe(this,Observer&lt;String&gt;( value -&gt; {
+    tv1.text = value
+}))
+btn1.setOnClickListener{ view -&gt; {
+    storage.userName.value = &quot;hello&quot;
+}}
+</pre></div>
+
+<details class="question"><summary>思考上述代码的效果</summary><p>你会发现按下按钮之后，tv1显示"Hello"，请思考实现的过程。</p>
+</details>
+<h2 id="kotlin2">kotlin优雅的异步方式：协程<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup><a class="headerlink" href="#kotlin2" title="Permanent link">&para;</a></h2>
+<h3 id="_4">情景<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>写了这么多程序的你，还在使用Message+Handler+Looper这种古老的手段的吗，对于异步，你可以更优雅的使用kotlin的协程(Coroutines)。这样你就可以更加方便的写异步了。</p>
+<h3 id="_5">代码实现<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<h4 id="1_1">1.安装依赖<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h4>
+<p>打开<code class="codehilite">build.gradle(Module:app)</code>，在<code class="codehilite">dependencies</code>加入以下一行</p>
+<div class="codehilite"><pre><span></span>//kotlin.coroutines(协程)
+implementation &#39;org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0&#39;
+</pre></div>
+
+<h4 id="2_1">2.开启异步线程<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">kotlinx.coroutines.</span><span class="o">*</span>
+
+<span class="n">GlobalScope</span><span class="o">.</span><span class="n">launch</span> <span class="p">{</span>
+    <span class="o">//</span><span class="n">dosomething</span>
+    <span class="n">runOnUiThread</span> <span class="p">{</span>
+        <span class="o">//</span><span class="n">dosomething</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="_6">备忘录<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="_7">样式<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<h4 id="_8">设置应用为无边框<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p>打开<code class="codehilite">res\values\styles.xml</code>在<code class="codehilite">AppTheme</code>中加入：</p>
+<div class="codehilite"><pre><span></span><span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;windowNoTitle&quot;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/item&gt;</span>
+</pre></div>
+
+<h4 id="_9">设置字体为粗体<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span>textStyle=&quot;bold&quot;
+</pre></div>
+
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>kotlin: 由<a href="https://www.jetbrains.com/">JetBrains</a>公司开发的一门语言。<a href="https://kotlinlang.org/">官方文档</a> <a href="https://www.jianshu.com/p/f98dcd2da323">教程：简书</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>协程：Coroutines，kotlin的一种异步实现方法。<a href="http://www.kotlincn.net/docs/reference/coroutines-overview.html">协程概述</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href=".." title="主页" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                主页
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../cpp_index/" title="C++" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                C++
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.245445c6.js"></script>
+      
+        
+        
+          
+          <script src="../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>
