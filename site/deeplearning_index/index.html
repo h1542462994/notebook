@@ -1,0 +1,751 @@
+
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+        <meta name="author" content="cht">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="zh">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>深度学习 - 个人笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#2196f3">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue" data-md-color-accent="cyan">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#1" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="个人笔记" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              个人笔记
+            </span>
+            <span class="md-header-nav__topic">
+              
+                深度学习
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="个人笔记" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    个人笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="主页" class="md-nav__link">
+      主页
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      编程笔记
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        编程笔记
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../android_index/" title="Android Native" class="md-nav__link">
+      Android Native
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cpp_index/" title="C++" class="md-nav__link">
+      C++
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kotlin_tomcat/" title="Kotlin For Tomcat" class="md-nav__link">
+      Kotlin For Tomcat
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        深度学习
+      </label>
+    
+    <a href="./" title="深度学习" class="md-nav__link md-nav__link--active">
+      深度学习
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="介绍" class="md-nav__link">
+    介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" title="线性回归5" class="md-nav__link">
+    线性回归5
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6" title="预备知识6" class="md-nav__link">
+    预备知识6
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logistic9" title="Logistic回归9" class="md-nav__link">
+    Logistic回归9
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" title="向量化10" class="md-nav__link">
+    向量化10
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-11" title="调试-梯度检测11" class="md-nav__link">
+    调试-梯度检测11
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#softmax12" title="Softmax回归12" class="md-nav__link">
+    Softmax回归12
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-13" title="调试-偏差与方差13" class="md-nav__link">
+    调试-偏差与方差13
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-14" title="调试-优化器和目标14" class="md-nav__link">
+    调试-优化器和目标14
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      学科
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        学科
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1">
+    
+    <label class="md-nav__link" for="nav-3-1">
+      英语
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        英语
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../english_word/" title="单词" class="md-nav__link">
+      单词
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../resources/" title="资源整理" class="md-nav__link">
+      资源整理
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      开发文档
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        开发文档
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../regular/" title="文档编写规范" class="md-nav__link">
+      文档编写规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../doc_user/" title="用户系统API" class="md-nav__link">
+      用户系统API
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="介绍" class="md-nav__link">
+    介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" title="线性回归5" class="md-nav__link">
+    线性回归5
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#6" title="预备知识6" class="md-nav__link">
+    预备知识6
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logistic9" title="Logistic回归9" class="md-nav__link">
+    Logistic回归9
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" title="向量化10" class="md-nav__link">
+    向量化10
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-11" title="调试-梯度检测11" class="md-nav__link">
+    调试-梯度检测11
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#softmax12" title="Softmax回归12" class="md-nav__link">
+    Softmax回归12
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-13" title="调试-偏差与方差13" class="md-nav__link">
+    调试-偏差与方差13
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-14" title="调试-优化器和目标14" class="md-nav__link">
+    调试-优化器和目标14
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="1">深度学习<sup id="fnref:a"><a class="footnote-ref" href="#fn:a">1</a></sup><a class="headerlink" href="#1" title="Permanent link">&para;</a></h1>
+<p>监督学习和优化</p>
+<h2 id="_1">介绍<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>这个教程将会介绍一些<mark class="critic">无监督特征学习</mark><sup id="fnref:b"><a class="footnote-ref" href="#fn:b">2</a></sup>和深度学习的主要思想。通过学习，你也会掌握几个特征学习和深度学习的算法及其应用，观察它们是如何自动化解决问题，以及学会将这些思想应用到新的问题上。</p>
+<div class="admonition tip">
+<p class="admonition-title">读者须知</p>
+<p>在这里假设你已经对机器学习(特别是熟悉监督学习，Logistic回归，梯度下降算法<sup id="fnref:c"><a class="footnote-ref" href="#fn:c">3</a></sup>)，如果你还对这些概念不熟悉，我们推荐你先学习机器学习的课程并完成Ⅱ、Ⅲ、Ⅳ三小节<sup id="fnref:k"><a class="footnote-ref" href="#fn:k">4</a></sup>。
+所有学习需要的代码都可以从<a href="https://github.com/amaas/stanford_dl_ex">Github Repository</a>中找到。</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">贡献者</p>
+<p>材料由Andrew Ng, Jiquan Ngiam, Chuan Yu Foo, Yifan Mai, Caroline Suen, Adam Coated, Andrew Maas, Awni Hannun, Brody Huval, Tao Wang, Sameep Tandon</p>
+</div>
+<h2 id="5">线性回归<sup id="fnref:d"><a class="footnote-ref" href="#fn:d">5</a></sup><a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<h3 id="6">预备知识<sup id="fnref:l"><a class="footnote-ref" href="#fn:l">6</a></sup><a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
+<p>作为一个学者，我们从掌握线性回归开始。主要是熟悉<mark class="critic">目标函数</mark><sup id="fnref:m"><a class="footnote-ref" href="#fn:m">7</a></sup>，计算梯度，然后根据一系列参数优化目标函数。这些知识将会为以后掌握更加复杂<sup id="fnref:n"><a class="footnote-ref" href="#fn:n">8</a></sup>的算法提供基础。</p>
+<div class="admonition info">
+<p class="admonition-title">提示</p>
+<p>读者想要了解更多细节可以参考<mark class="critic">监督学习</mark>的教材笔记 <a href="http://cs229.stanford.edu/notes/cs229-notes1.pdf">点击下载</a>。</p>
+</div>
+<p>线性回归的目标是从一个输入向量$x$</p>
+<h2 id="logistic9">Logistic回归<sup id="fnref:e"><a class="footnote-ref" href="#fn:e">9</a></sup><a class="headerlink" href="#logistic9" title="Permanent link">&para;</a></h2>
+<h2 id="10">向量化<sup id="fnref:f"><a class="footnote-ref" href="#fn:f">10</a></sup><a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
+<h2 id="-11">调试-梯度检测<sup id="fnref:g"><a class="footnote-ref" href="#fn:g">11</a></sup><a class="headerlink" href="#-11" title="Permanent link">&para;</a></h2>
+<h2 id="softmax12">Softmax回归<sup id="fnref:h"><a class="footnote-ref" href="#fn:h">12</a></sup><a class="headerlink" href="#softmax12" title="Permanent link">&para;</a></h2>
+<h2 id="-13">调试-偏差与方差<sup id="fnref:i"><a class="footnote-ref" href="#fn:i">13</a></sup><a class="headerlink" href="#-13" title="Permanent link">&para;</a></h2>
+<h2 id="-14">调试-优化器和目标<sup id="fnref:j"><a class="footnote-ref" href="#fn:j">14</a></sup><a class="headerlink" href="#-14" title="Permanent link">&para;</a></h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:a">
+<p>该文档由<a href="http://deeplearning.stanford.edu/tutorial/">英文文档</a>翻译而来，当前正在翻译&#160;<a class="footnote-backref" href="#fnref:a" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:b">
+<p>无监督特征学习:Upsupervised feature learning.&#160;<a class="footnote-backref" href="#fnref:b" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:c">
+<p>梯度下降算法:Gradient Descent&#160;<a class="footnote-backref" href="#fnref:c" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:k">
+<p>原文没有给出链接，<a href="http://openclassroom.stanford.edu/MainFolder/CoursePage.php?course=MachineLearning">教程地址</a> - 译者注&#160;<a class="footnote-backref" href="#fnref:k" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:d">
+<p>线性回归:Linear Regression&#160;<a class="footnote-backref" href="#fnref:d" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:l">
+<p>预备知识: Problem Formulatin，字面意思为问题公式化，但根据上下文应该翻译为预备知识 - 译者注&#160;<a class="footnote-backref" href="#fnref:l" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:m">
+<p>目标函数: objective function.&#160;<a class="footnote-backref" href="#fnref:m" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:n">
+<p>复杂的: sophisticated&#160;<a class="footnote-backref" href="#fnref:n" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:e">
+<p>Logistic回归:Logistic Regression&#160;<a class="footnote-backref" href="#fnref:e" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+</li>
+<li id="fn:f">
+<p>向量化:Vectorization&#160;<a class="footnote-backref" href="#fnref:f" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+<li id="fn:g">
+<p>调试-梯度检测: Debugging:Gradient Checking&#160;<a class="footnote-backref" href="#fnref:g" title="Jump back to footnote 11 in the text">&#8617;</a></p>
+</li>
+<li id="fn:h">
+<p>Softmax回归: Softmax Regression&#160;<a class="footnote-backref" href="#fnref:h" title="Jump back to footnote 12 in the text">&#8617;</a></p>
+</li>
+<li id="fn:i">
+<p>调试-偏差和方差:Debugging: Bias and Variance&#160;<a class="footnote-backref" href="#fnref:i" title="Jump back to footnote 13 in the text">&#8617;</a></p>
+</li>
+<li id="fn:j">
+<p>调试-优化器和目标:Debugging:Optimizers and Objectives&#160;<a class="footnote-backref" href="#fnref:j" title="Jump back to footnote 14 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../kotlin_tomcat/" title="Kotlin For Tomcat" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                Kotlin For Tomcat
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../english_word/" title="单词" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                单词
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.245445c6.js"></script>
+      
+        
+        
+          
+          <script src="../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>

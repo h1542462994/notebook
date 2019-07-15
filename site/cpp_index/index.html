@@ -1,0 +1,924 @@
+
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+        <meta name="author" content="cht">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="zh">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>C++ - 个人笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#2196f3">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue" data-md-color-accent="cyan">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#c" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="个人笔记" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              个人笔记
+            </span>
+            <span class="md-header-nav__topic">
+              
+                C++
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="个人笔记" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    个人笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="主页" class="md-nav__link">
+      主页
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      编程笔记
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        编程笔记
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../android_index/" title="Android Native" class="md-nav__link">
+      Android Native
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        C++
+      </label>
+    
+    <a href="./" title="C++" class="md-nav__link md-nav__link--active">
+      C++
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="指针和数组" class="md-nav__link">
+    指针和数组
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="指针是什么" class="md-nav__link">
+    指针是什么
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-" title="指针的+和-运算符" class="md-nav__link">
+    指针的+和-运算符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="指针的下标运算" class="md-nav__link">
+    指针的下标运算
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-_1" title="奇怪的"类型"-数组" class="md-nav__link">
+    奇怪的"类型"-数组
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="二级指针和指向数组的指针" class="md-nav__link">
+    二级指针和指向数组的指针
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="引用" class="md-nav__link">
+    引用
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="引用的概念" class="md-nav__link">
+    引用的概念
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="引用传递和值传递" class="md-nav__link">
+    引用传递和值传递
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="引用的作用" class="md-nav__link">
+    引用的作用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#const" title="const修饰符" class="md-nav__link">
+    const修饰符
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="修饰变量" class="md-nav__link">
+    修饰变量
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" title="修饰函数" class="md-nav__link">
+    修饰函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" title="修饰指针" class="md-nav__link">
+    修饰指针
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" title="浅拷贝和深拷贝" class="md-nav__link">
+    浅拷贝和深拷贝
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kotlin_tomcat/" title="Kotlin For Tomcat" class="md-nav__link">
+      Kotlin For Tomcat
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deeplearning_index/" title="深度学习" class="md-nav__link">
+      深度学习
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      学科
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        学科
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1">
+    
+    <label class="md-nav__link" for="nav-3-1">
+      英语
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        英语
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../english_word/" title="单词" class="md-nav__link">
+      单词
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../resources/" title="资源整理" class="md-nav__link">
+      资源整理
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      开发文档
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        开发文档
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../regular/" title="文档编写规范" class="md-nav__link">
+      文档编写规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../doc_user/" title="用户系统API" class="md-nav__link">
+      用户系统API
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="指针和数组" class="md-nav__link">
+    指针和数组
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="指针是什么" class="md-nav__link">
+    指针是什么
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-" title="指针的+和-运算符" class="md-nav__link">
+    指针的+和-运算符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="指针的下标运算" class="md-nav__link">
+    指针的下标运算
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-_1" title="奇怪的"类型"-数组" class="md-nav__link">
+    奇怪的"类型"-数组
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="二级指针和指向数组的指针" class="md-nav__link">
+    二级指针和指向数组的指针
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="引用" class="md-nav__link">
+    引用
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="引用的概念" class="md-nav__link">
+    引用的概念
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="引用传递和值传递" class="md-nav__link">
+    引用传递和值传递
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="引用的作用" class="md-nav__link">
+    引用的作用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#const" title="const修饰符" class="md-nav__link">
+    const修饰符
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="修饰变量" class="md-nav__link">
+    修饰变量
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" title="修饰函数" class="md-nav__link">
+    修饰函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" title="修饰指针" class="md-nav__link">
+    修饰指针
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" title="浅拷贝和深拷贝" class="md-nav__link">
+    浅拷贝和深拷贝
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="c">C++<a class="headerlink" href="#c" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">作者插入</p>
+<p>这个分类的内容主要是用来记录C++语法的，当然也不可能详细地介绍，只是有感而发。当然，如果有什么好的想法要我写的话，请转到Github的Issues提交问题。</p>
+</div>
+<h2 id="_1">指针和数组<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="_2">指针是什么<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p><mark class="critic">指针</mark>是一种C/C++变量，其存储的信息是<mark class="critic">变量的地址</mark>和<mark class="critic">变量的类型信息</mark>。每种类型，包括自定义类型，系统都会自动派生出对应的指针类型(在变量前加*)，其定义只要在参数前加上*就可以了。</p>
+<p>在这里，我们需要注意以下几点：</p>
+<ul>
+<li>
+<p>变量地址指该变量所占内存空间的首地址。例如<code class="codehilite">int a</code>占了内存105-108，则<code class="codehilite">a</code>的地址为105.</p>
+</li>
+<li>
+<p>当该变量为自定义类型时，其所占的空间为其成员所占的空间和，<strong>不包含动态申请的空间</strong>，一个特定的类具有唯一确定的空间大小(不包括动态申请的内存空间)。例如有以下类型。则其所占的空间为12Bytes(假设一个指针占4Bytes)，获取一个变量或者类型占用的内存空间可以用<code class="codehilite">sizeof()</code>。</p>
+</li>
+</ul>
+<p><div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">A</span>
+<span class="p">{</span>
+    <span class="n">string</span><span class="o">*</span> <span class="n">a</span><span class="p">;</span>
+    <span class="kt">int</span><span class="o">*</span> <span class="n">b</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="kt">long</span><span class="o">*</span> <span class="n">c</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+- 类和对应的指针的<code class="codehilite">&amp;</code>和<code class="codehilite">*</code>运算符默认为取地址和解指针运算符，当然也可以根据实际需要来重载。</p>
+<h3 id="-">指针的<code class="codehilite">+</code>和<code class="codehilite">-</code>运算符<a class="headerlink" href="#-" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="c1">//定义一个指针变量p，其指向数组的第0个元素，就假设其地址值为101(当然，实际上是16进制的).</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">//输出101.</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">//p后移以为，指向数组的第1个元素.</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">//输出105(假设int占4Bytes).</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">//输出3.</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<div class="admonition tip">
+<p class="admonition-title">读者须知</p>
+<p>在涉及到讲解的代码块时，推荐自己先跑一遍代码，然后与本文所讲的进行对比。</p>
+</div>
+<p><code class="codehilite">int*(a) + int(b)</code>表示指针的地址向后移动<code class="codehilite">b * sizeof(int)</code>位，也就是b个<code class="codehilite">int</code>型的长度，这样做是为了方便数组和移位的操作。</p>
+<p>当然<code class="codehilite">int*(a) - int*(b)</code>和上面类似，表示中间相差的元素个数。</p>
+<h3 id="_3">指针的下标运算<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>指针的下标运算和数组的很像，实际上下标运算通常在动态数组中应用，例如<code class="codehilite">a[2]</code>表示动态数组<code class="codehilite">a</code>的第二个元素。根据上文的运算法则，<code class="codehilite">a[2]&lt;==&gt;*(a+2)</code>，其两者实现的效果等价。</p>
+<h3 id="-_1">奇怪的"类型"-数组<a class="headerlink" href="#-_1" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">作者插入</p>
+<p>其实本来我想先讲4再讲3，但既然提到了数组，那就讲讲数组这个奇怪的东西。</p>
+</div>
+<p><mark class="critic">数组</mark>并不是一个真正的类型。而是一个不完全类型，静态数组的<strong>容量大小</strong>只能在编译前确定，而且它还具有很多奇怪的性质。</p>
+<p><mark class="critic">数组</mark>是用一块连续的内存空间来存储的，因此，C++的数组可以通过数组名来获取其首地址，用下标运算获取对应的元素。</p>
+<div class="codehilite"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">};</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">sizetest</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">sizetest</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">[])</span> <span class="c1">//请看这个，入参其实和int *a没什么两样。</span>
+<span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>你会发现，打出来的两行东西是不一样的，第一行是<code class="codehilite">20</code>，第二行是<code class="codehilite">4</code>。这是因为前一个<code class="codehilite">sizeof()</code>可以通过上下文定位数组（也就获取到了它元素的个数），而函数中的<code class="codehilite">sizeof()</code>无法获取数组的长度信息(因为已经是一个指针了)，也就是说，数组只能通过<mark class="critic">指针</mark>的方式传递，且会丢失信息。</p>
+<h3 id="_4">二级指针和指向数组的指针<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">提示</p>
+<p>二级指针包括指针的指针，也包括指向数组的指针。当然，这里的二级指针的含义指指向指针的指针。</p>
+</div>
+<div class="codehilite"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">10</span><span class="p">];</span>
+
+    <span class="kt">int</span> <span class="o">**</span><span class="n">pa</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="c1">//int(*)[10]类型的值不能初始化int**的实体</span>
+    <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">pa</span><span class="p">)[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="c1">//通过</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>第一个就是二级指针，第二个就是指向数组的指针，这个很少用，真的很少用，当然，请注意<code class="codehilite">int (*pa)[10]</code>和<code class="codehilite">int *pa[10]</code>的区别，一个是指向数组的指针，一个是基类型为<code class="codehilite">int*</code>的一个数组。</p>
+<h2 id="_5">引用<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_6">引用的概念<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p><code class="codehilite">C++</code>的<mark class="critic">指针</mark>使得我们可以直接和内存进行交互。然而，有时候我们仅仅需要一个<em>传递一个变量</em>，而不关注其他的内容。所以<code class="codehilite">C++</code>设计了<mark class="critic">引用</mark>，从而减少了<code class="codehilite">&amp;</code>和<code class="codehilite">*</code>的操作。</p>
+<p><mark class="critic">引用</mark>是一种已经包装过的<mark class="critic">常指针</mark>，其很多特性和常指针很像，然而其不需要复杂的<code class="codehilite">&amp;</code>和<code class="codehilite">*</code>操作。引用可以形象化地理解为给变量取别名。当引用传递给参数时，可以理解为把整个变量给了函数。</p>
+<p>因为引用本质上是一个常指针，因而 1)不能用一个常量来给引用赋值。 2)引用定义时就要初始化，且引用的变量在中途不能更改。</p>
+<h3 id="_7">引用传递和值传递<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>无论是普通基类对象还是指针，当函数调用或者返回的时候都属于<mark class="critic">值传递</mark>的方式，当参数是类对象时，其会调用拷贝构造函数来生成一个副本，作为函数内的临时对象。而指针是通过拷贝地址的方式来间接实现传递变量的。</p>
+<p>而引用虽然本质上是<mark class="critic">常指针</mark>，但是从形式上来说其确实<em>传递了变量</em>，因而当一个参数为<mark class="critic">引用</mark>时，其参数必须是可修改的左值。例如参考以下代码，其输出将为10。</p>
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">10</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3 id="_8">引用的作用<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p><mark class="critic">引用</mark>就其功能来说完全可以通过指针来实现，但是引用的传递参数更加地方便，也提高了程序的阅读能力。其中<code class="codehilite">cin &gt;&gt;</code>便是一个很好地使用了<mark class="critic">引用</mark>的例子，因为流输入是个变量赋值的。</p>
+<p>其调用参数和使用参数的时候和普通的对象几乎没有什么区别，所以也提高了代码的可维护性，引用在必要的地方还可以节省一次<em>创建拷贝</em>的过程，节省了内存空间。</p>
+<h2 id="const">const修饰符<a class="headerlink" href="#const" title="Permanent link">&para;</a></h2>
+<p><code class="codehilite">const</code>表明了<strong>常</strong>的属性，所以要理解<code class="codehilite">const</code>，就需要理解<strong>常</strong>这个概念。<code class="codehilite">const</code>可以修饰变量，指针，函数和成员/字段，我们将<code class="codehilite">非const</code>赋给一个<code class="codehilite">const</code>对象，但是反过来就不可以。</p>
+<h3 id="_9">修饰变量<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>这里的变量不包括指针，既可以是基类型，也可以是类对象。当然，当一个变量用<code class="codehilite">const</code>来修饰时，表明其<strong>成员</strong>无法修改，对于类对象来说，其还有不能调用<code class="codehilite">非const</code>函数的特征(因为<code class="codehilite">const</code>函数可以保证其数据成员不修改)。</p>
+<p>除此之外，通过<code class="codehilite">#define</code>也可以实现类似的功能，但是其原理是通过文本替换来实现的。</p>
+<h3 id="_10">修饰函数<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>当一个函数声明为<code class="codehilite">const</code>时，其表示这个一个不会修改<strong>数据成员</strong>的函数，任何企图修改数据成员的函数都会编译不通过。这样可以确保<code class="codehilite">const</code>对象调用的方法不会修改成员。</p>
+<div class="admonition info">
+<p class="admonition-title">提示</p>
+<p>虽然<code class="codehilite">const</code>函数无法修改数据成员，但是如果其成员中有一个指针，则其指针指向不能变，但仍然可以通过指针来修改内存中的数据。</p>
+</div>
+<h3 id="_11">修饰指针<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>指针有两处地方可以修饰，一种是<strong>指针符号</strong>前，另一种是<strong>指针符号后</strong>，其区别如下</p>
+<p><code class="codehilite">const int *p</code>表示指向<code class="codehilite">const</code>数据的指针。其指针的指向可以修改，但是<em>不能通过该指针修改其内存中的值</em>(并没有要求其指向的是一个常量)</p>
+<p>而<code class="codehilite">int * const p</code>是一个常指针，其指向不能更改，但是<em>可以通过该指针修改内存中的值</em>。</p>
+<div class="admonition info">
+<p class="admonition-title">提示</p>
+<p><code class="codehilite">const int *p</code>和<code class="codehilite">int const *p</code>属于同一种东西，是指向常量的指针变量。</p>
+</div>
+<p><code class="codehilite">const</code>设计出来主要用来 1)定义一个全局的变量 2)防止传递参数时函数内部修改变量的值。</p>
+<h2 id="_12">浅拷贝和深拷贝<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>对于一般的类型来说，编译器默认的拷贝就是<mark class="critic">深拷贝</mark>。然而当类型包含<mark class="critic">指针</mark>类型的数据时，系统默认会拷贝指针的值，而不会去拷贝其内存中的值。这种通过拷贝后数据仍然是<strong>一份</strong>(占用同一块)内存空间的现象就叫做<mark class="critic">浅拷贝</mark>。浅拷贝可以减少变量所占的空间(因为需要拷贝的数据少了)，但是会导致很多问题。</p>
+<p>而问题主要出析构函数这一块，析构函数希望通过<strong>撤销动态空间来防止内存泄露</strong>，但是这样做会出现<strong>野指针</strong>的现象。</p>
+<p>后续，我会通过例子来讲解<mark class="critic">浅拷贝</mark>和<mark class="critic">深拷贝</mark>的实际作用。</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../android_index/" title="Android Native" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                Android Native
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../kotlin_tomcat/" title="Kotlin For Tomcat" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                Kotlin For Tomcat
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.245445c6.js"></script>
+      
+        
+        
+          
+          <script src="../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>
