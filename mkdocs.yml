@@ -25,6 +25,7 @@ nav:
         - 用户系统API: doc_user.md
 
 markdown_extensions:
+  - meta
   - admonition # 注解
   - pymdownx.details # 折叠需要的
   - footnotes # 脚注

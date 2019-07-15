@@ -26,7 +26,7 @@
     password: CharField(max_length=128)  # 密码，md5
     nickname: CharField(max_length=64)  # 昵称，1-32个任意字符
     email: CharField(default='',max_length=64)  # 邮箱
-    create_time: DateTimeField(auto_now_add=True)  # 创建时间
+    create_time: DateTimeField()  # 创建时间
     user_type: PositiveSmallIntegerField(default=0, choices=user_type_choices)  # 用户类别，包括'normal','admin','superadmin'三种值，此信息仅用于管理用户信息，具体授权的操作见配置文件。
     exp: PositiveIntegerField(default=0)  # 用户经验
     tags: TextField(default='')  # 用户认证标签
@@ -90,7 +90,7 @@
 
     该表用于记录用户的活动信息
 
-    ```python
+    ```python hl_lines="13"
     device_type_choices = (
         (0, 'mobile'),
         (1, 'pc'),
@@ -103,9 +103,9 @@
     user: ForeignKey(User, related_name='user_activities', on_delete=models.CASCADE)  # 外键，对应持有该活动信息用户。
     software: CharField(max_length=32)  # 对应的软件名称，默认支持'test'和'index'，其他支持需要询问平台配置。
     access_ip: CharField(max_length=32)  # 最后活动的ip地址
-    access_uid: CharField(max_length=64)  # 第一次登录时生成的uid，用于自动登录时的检测所用。
+    # access_uid: CharField(max_length=64)  # -无效- 第一次登录时生成的uid，用于自动登录时的检测所用。
     device_type: PositiveSmallIntegerField(default=0, choices=device_type_choices)  # 设备平台名称，默认支持'mobile','pc','web','pad'四个平台的设备。
-    access_time: DateTimeField(auto_now_add=True)  # 最后活动的时间
+    access_time: DateTimeField()  # 最后活动的时间
     ```
 
     !!! info "token"
@@ -144,7 +144,7 @@
     state: PositiveSmallIntegerField(default=0, choices=state_choices)  # 绑定状态，'success','fail'.
     ```
 
-#### 用户日志信息
+#### 用户日志
 
 !!! summary "version 1.0.1"
 
@@ -155,8 +155,15 @@
     @search
     user: ForeignKey(User, related_name='user_log')  # 外键，对应持有该日志的用户
     action_type: CharField(max_length=64)  # 用户日志类别，所有兼容的类别都会在设置内写出
+    time: DateTimeField()  # 打log的时间
     content: TextField()  # 用户日志内容
     ```
+
+    预设的日志信息类别、格式和说明
+    
+    | action_type | format | description |
+    | :---: | :---: | :--- :
+    | login | state=enumof(success/fail)::software=str::access_ip=str::access_time=str | 用户登录活动 |
 
 ### 后端个性化配置
 
@@ -207,6 +214,14 @@
 
     然后给出返回的shortcut值和对应的含义，并给出正确的输入和输出样例
 
+#### 路径
+
+```
+本地开发环境: http://127.0.0.1:8080/
+测试环境: 暂未部署
+生产环境：暂未部署
+```
+
 #### 注册
 
 注册分为很多种，有默认的注册，还有平台的注册。
@@ -234,8 +249,8 @@
 
     | shortcut | msg | 备注 |
     | :---: | :---: | :--- |
-    | ae | arguments mismatch. | state=400，参数不匹配 |
-    | fe | arguments format error:{0} | 后面会给出详细错误信息，例如:arg(name) is invalid |
+    | ae | arguments mismatch. | status=400,参数不匹配 |
+    | fe | arguments format error:{0} | status=400,后面会给出详细错误信息，例如:arg(name) is invalid |
     | ur | the user [{name}] has been registerd. | 给出错误信息，表示该用户已经被注册 |
     | ok | ok, you have created a user, let's fun | 注册成功 |
 
@@ -243,7 +258,9 @@
 
     **样例**
 
-    ```bat hl_lines="2"
+    ```bat hl_lines="2 4"
+    # get
+    http://127.0.0.1:8000/api/user/create?name=test&nickname=test1&password=e10adc3949ba59abbe56e057f20f883e&email=example1@gmail.com
     # post
     http://127.0.0.1:8000/api/user/create
     name=test
@@ -285,10 +302,84 @@
 
     | shortcut | msg | 备注 |
     | :---: | :---: | :--- |
-    | ae | arguments mismatch | status=400，参数不匹配 |
-    | fe | the format of name is invalid. | 输出的姓名格式不正确 |
+    | ae | arguments mismatch | status=400,参数不匹配 |
+    | fe | the format of name is invalid. | status=400,输出的姓名格式不正确 |
     | ur | the user [{user}] has been registered. | 该用户已被注册 |
     | ok | the user [{user}] has not been registerd. | 该用户没有被注册 |
+
+    ---
+
+    **样例**
+
+    ```bat
+    # get
+    http://127.0.0.1:8000/api/user/check_name?name=test
+    # return
+    {
+        "msg": "the user [test] has not been registered.",
+        "shortcut": "ok"
+    }
+    ```
+
+#### 登录
+
+!!! info ""
+
+    **请求**
+
+    ```python
+    route: '/api/user/login'
+    post(get in 'debug'):
+        name:str  # 登录的用户名，只能包含数字，大小写英文，下划线。（长度限制为2~32个字符）
+        password:str  # 密码，md5，以16进制传输，英文字符为小写
+        software:str  # 登录软件的名称，支持的软件#个性化设置栏目#
+        device_type:str  # 登录的平台，支持'mobile','pc','web','pad'
+    ```
+
+    ---
+
+    **返回值**
+
+    | shortcut | msg | 备注 |
+    | :---: | :---: | :--- |
+    | ae | arguments mismatch. | status=400,参数不匹配 |
+    | fe | arguments format error:{0} | status=400,后面会给出详细错误信息，例如:arg(name) is invalid |
+    | une | user not existed. | 该用户不存在 |
+    | upe | password error. | 用户密码错误 |
+    | ok | login ok. let\'s fun. | 注册成功 |
+
+    ---
+
+    **样例**
+
+    ```bat
+    # get
+    http://127.0.0.1:8000/api/user/login?name=test&password=e10adc3949ba59abbe56e057f20f883e&software=index&device_type=mobile
+    # post
+    http://127.0.0.1:8000/api/user/login
+    name=test
+    password=e10adc3949ba59abbe56e057f20f883e
+    software=index
+    device_type=mobile
+    # result
+    {
+        "msg": "login ok. let's fun.", 
+        "shortcut": "ok", 
+        "data": {
+            "name": "test", 
+            "uid": "1563161937098f6bcd4621d373cade4e832627b4f623", 
+            "nickname": "test1", 
+            "email": "example1@gmail.com", 
+            "create_time": "2019-07-15 11:38:57", 
+            "user_type": "normal", 
+            "exp": 0, 
+            "tags": "", 
+            "extras": "", 
+            "access_time": "2019-07-15 16:57:18",
+            "token": "9e14c58047a47370406a351bc607bbf4c0a4722e0688a5207192f80141c87513278b00f7c1a7ee8462fbc911d9c0109f48765b54107f87a857c1fd65c4ebc6b0e3598ac303d7c824c4724f7bb799d8a321584247fcaed41b539d0eb6268e31ec"
+        }
+    }
+    ```
 
 ## Java后端实现
 
