@@ -409,6 +409,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../backend_index/" title="后端教程" class="md-nav__link">
+      后端教程
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -705,10 +717,10 @@
 <p>在这里，我们需要注意以下几点：</p>
 <ul>
 <li>
-<p>变量地址指该变量所占内存空间的首地址。例如<code class="codehilite">int a</code>占了内存105-108，则<code class="codehilite">a</code>的地址为105.</p>
+<p>变量地址指该变量所占内存空间的首地址。例如<code class="codehilite"><span class="nb">int</span> <span class="n">a</span></code>占了内存105-108，则<code class="codehilite"><span class="n">a</span></code>的地址为105.</p>
 </li>
 <li>
-<p>当该变量为自定义类型时，其所占的空间为其成员所占的空间和，<strong>不包含动态申请的空间</strong>，一个特定的类具有唯一确定的空间大小(不包括动态申请的内存空间)。例如有以下类型。则其所占的空间为12Bytes(假设一个指针占4Bytes)，获取一个变量或者类型占用的内存空间可以用<code class="codehilite">sizeof()</code>。</p>
+<p>当该变量为自定义类型时，其所占的空间为其成员所占的空间和，<strong>不包含动态申请的空间</strong>，一个特定的类具有唯一确定的空间大小(不包括动态申请的内存空间)。例如有以下类型。则其所占的空间为12Bytes(假设一个指针占4Bytes)，获取一个变量或者类型占用的内存空间可以用<code class="codehilite"><span class="n">sizeof</span><span class="p">()</span></code>。</p>
 </li>
 </ul>
 <p><div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">A</span>
@@ -718,8 +730,8 @@
     <span class="kt">long</span> <span class="kt">long</span><span class="o">*</span> <span class="n">c</span><span class="p">;</span>
 <span class="p">};</span>
 </pre></div>
-- 类和对应的指针的<code class="codehilite">&amp;</code>和<code class="codehilite">*</code>运算符默认为取地址和解指针运算符，当然也可以根据实际需要来重载。</p>
-<h3 id="-">指针的<code class="codehilite">+</code>和<code class="codehilite">-</code>运算符<a class="headerlink" href="#-" title="Permanent link">&para;</a></h3>
+- 类和对应的指针的<code class="codehilite"><span class="o">&amp;</span></code>和<code class="codehilite"><span class="o">*</span></code>运算符默认为取地址和解指针运算符，当然也可以根据实际需要来重载。</p>
+<h3 id="-">指针的<code class="codehilite"><span class="o">+</span></code>和<code class="codehilite"><span class="o">-</span></code>运算符<a class="headerlink" href="#-" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
@@ -738,10 +750,10 @@
 <p class="admonition-title">读者须知</p>
 <p>在涉及到讲解的代码块时，推荐自己先跑一遍代码，然后与本文所讲的进行对比。</p>
 </div>
-<p><code class="codehilite">int*(a) + int(b)</code>表示指针的地址向后移动<code class="codehilite">b * sizeof(int)</code>位，也就是b个<code class="codehilite">int</code>型的长度，这样做是为了方便数组和移位的操作。</p>
-<p>当然<code class="codehilite">int*(a) - int*(b)</code>和上面类似，表示中间相差的元素个数。</p>
+<p><code class="codehilite"><span class="nb">int</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">)</span></code>表示指针的地址向后移动<code class="codehilite"><span class="n">b</span> <span class="o">*</span> <span class="n">sizeof</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span></code>位，也就是b个<code class="codehilite"><span class="nb">int</span></code>型的长度，这样做是为了方便数组和移位的操作。</p>
+<p>当然<code class="codehilite"><span class="nb">int</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">-</span> <span class="nb">int</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="p">)</span></code>和上面类似，表示中间相差的元素个数。</p>
 <h3 id="_3">指针的下标运算<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p>指针的下标运算和数组的很像，实际上下标运算通常在动态数组中应用，例如<code class="codehilite">a[2]</code>表示动态数组<code class="codehilite">a</code>的第二个元素。根据上文的运算法则，<code class="codehilite">a[2]&lt;==&gt;*(a+2)</code>，其两者实现的效果等价。</p>
+<p>指针的下标运算和数组的很像，实际上下标运算通常在动态数组中应用，例如<code class="codehilite"><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span></code>表示动态数组<code class="codehilite"><span class="n">a</span></code>的第二个元素。根据上文的运算法则，<code class="codehilite"><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&lt;==&gt;*</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span></code>，其两者实现的效果等价。</p>
 <h3 id="-_1">奇怪的"类型"-数组<a class="headerlink" href="#-_1" title="Permanent link">&para;</a></h3>
 <div class="admonition note">
 <p class="admonition-title">作者插入</p>
@@ -766,7 +778,7 @@
 <span class="p">}</span>
 </pre></div>
 
-<p>你会发现，打出来的两行东西是不一样的，第一行是<code class="codehilite">20</code>，第二行是<code class="codehilite">4</code>。这是因为前一个<code class="codehilite">sizeof()</code>可以通过上下文定位数组（也就获取到了它元素的个数），而函数中的<code class="codehilite">sizeof()</code>无法获取数组的长度信息(因为已经是一个指针了)，也就是说，数组只能通过<mark class="critic">指针</mark>的方式传递，且会丢失信息。</p>
+<p>你会发现，打出来的两行东西是不一样的，第一行是<code class="codehilite"><span class="mi">20</span></code>，第二行是<code class="codehilite"><span class="mi">4</span></code>。这是因为前一个<code class="codehilite"><span class="n">sizeof</span><span class="p">()</span></code>可以通过上下文定位数组（也就获取到了它元素的个数），而函数中的<code class="codehilite"><span class="n">sizeof</span><span class="p">()</span></code>无法获取数组的长度信息(因为已经是一个指针了)，也就是说，数组只能通过<mark class="critic">指针</mark>的方式传递，且会丢失信息。</p>
 <h3 id="_4">二级指针和指向数组的指针<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">提示</p>
@@ -783,11 +795,11 @@
 <span class="p">}</span>
 </pre></div>
 
-<p>第一个就是二级指针，第二个就是指向数组的指针，这个很少用，真的很少用，当然，请注意<code class="codehilite">int (*pa)[10]</code>和<code class="codehilite">int *pa[10]</code>的区别，一个是指向数组的指针，一个是基类型为<code class="codehilite">int*</code>的一个数组。</p>
+<p>第一个就是二级指针，第二个就是指向数组的指针，这个很少用，真的很少用，当然，请注意<code class="codehilite"><span class="nb">int</span> <span class="p">(</span><span class="o">*</span><span class="n">pa</span><span class="p">)[</span><span class="mi">10</span><span class="p">]</span></code>和<code class="codehilite"><span class="nb">int</span> <span class="o">*</span><span class="n">pa</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span></code>的区别，一个是指向数组的指针，一个是基类型为<code class="codehilite"><span class="nb">int</span><span class="o">*</span></code>的一个数组。</p>
 <h2 id="_5">引用<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <h3 id="_6">引用的概念<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite">C++</code>的<mark class="critic">指针</mark>使得我们可以直接和内存进行交互。然而，有时候我们仅仅需要一个<em>传递一个变量</em>，而不关注其他的内容。所以<code class="codehilite">C++</code>设计了<mark class="critic">引用</mark>，从而减少了<code class="codehilite">&amp;</code>和<code class="codehilite">*</code>的操作。</p>
-<p><mark class="critic">引用</mark>是一种已经包装过的<mark class="critic">常指针</mark>，其很多特性和常指针很像，然而其不需要复杂的<code class="codehilite">&amp;</code>和<code class="codehilite">*</code>操作。引用可以形象化地理解为给变量取别名。当引用传递给参数时，可以理解为把整个变量给了函数。</p>
+<p><code class="codehilite"><span class="k">C</span><span class="o">++</span></code>的<mark class="critic">指针</mark>使得我们可以直接和内存进行交互。然而，有时候我们仅仅需要一个<em>传递一个变量</em>，而不关注其他的内容。所以<code class="codehilite"><span class="k">C</span><span class="o">++</span></code>设计了<mark class="critic">引用</mark>，从而减少了<code class="codehilite"><span class="o">&amp;</span></code>和<code class="codehilite"><span class="o">*</span></code>的操作。</p>
+<p><mark class="critic">引用</mark>是一种已经包装过的<mark class="critic">常指针</mark>，其很多特性和常指针很像，然而其不需要复杂的<code class="codehilite"><span class="o">&amp;</span></code>和<code class="codehilite"><span class="o">*</span></code>操作。引用可以形象化地理解为给变量取别名。当引用传递给参数时，可以理解为把整个变量给了函数。</p>
 <p>因为引用本质上是一个常指针，因而 1)不能用一个常量来给引用赋值。 2)引用定义时就要初始化，且引用的变量在中途不能更改。</p>
 <h3 id="_7">引用传递和值传递<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>无论是普通基类对象还是指针，当函数调用或者返回的时候都属于<mark class="critic">值传递</mark>的方式，当参数是类对象时，其会调用拷贝构造函数来生成一个副本，作为函数内的临时对象。而指针是通过拷贝地址的方式来间接实现传递变量的。</p>
@@ -807,28 +819,28 @@
 </pre></div>
 
 <h3 id="_8">引用的作用<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<p><mark class="critic">引用</mark>就其功能来说完全可以通过指针来实现，但是引用的传递参数更加地方便，也提高了程序的阅读能力。其中<code class="codehilite">cin &gt;&gt;</code>便是一个很好地使用了<mark class="critic">引用</mark>的例子，因为流输入是个变量赋值的。</p>
+<p><mark class="critic">引用</mark>就其功能来说完全可以通过指针来实现，但是引用的传递参数更加地方便，也提高了程序的阅读能力。其中<code class="codehilite"><span class="n">cin</span> <span class="o">&gt;&gt;</span></code>便是一个很好地使用了<mark class="critic">引用</mark>的例子，因为流输入是个变量赋值的。</p>
 <p>其调用参数和使用参数的时候和普通的对象几乎没有什么区别，所以也提高了代码的可维护性，引用在必要的地方还可以节省一次<em>创建拷贝</em>的过程，节省了内存空间。</p>
 <h2 id="const">const修饰符<a class="headerlink" href="#const" title="Permanent link">&para;</a></h2>
-<p><code class="codehilite">const</code>表明了<strong>常</strong>的属性，所以要理解<code class="codehilite">const</code>，就需要理解<strong>常</strong>这个概念。<code class="codehilite">const</code>可以修饰变量，指针，函数和成员/字段，我们将<code class="codehilite">非const</code>赋给一个<code class="codehilite">const</code>对象，但是反过来就不可以。</p>
+<p><code class="codehilite"><span class="n">const</span></code>表明了<strong>常</strong>的属性，所以要理解<code class="codehilite"><span class="n">const</span></code>，就需要理解<strong>常</strong>这个概念。<code class="codehilite"><span class="n">const</span></code>可以修饰变量，指针，函数和成员/字段，我们将<code class="codehilite"><span class="err">非</span><span class="n">const</span></code>赋给一个<code class="codehilite"><span class="n">const</span></code>对象，但是反过来就不可以。</p>
 <h3 id="_9">修饰变量<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
-<p>这里的变量不包括指针，既可以是基类型，也可以是类对象。当然，当一个变量用<code class="codehilite">const</code>来修饰时，表明其<strong>成员</strong>无法修改，对于类对象来说，其还有不能调用<code class="codehilite">非const</code>函数的特征(因为<code class="codehilite">const</code>函数可以保证其数据成员不修改)。</p>
-<p>除此之外，通过<code class="codehilite">#define</code>也可以实现类似的功能，但是其原理是通过文本替换来实现的。</p>
+<p>这里的变量不包括指针，既可以是基类型，也可以是类对象。当然，当一个变量用<code class="codehilite"><span class="n">const</span></code>来修饰时，表明其<strong>成员</strong>无法修改，对于类对象来说，其还有不能调用<code class="codehilite"><span class="err">非</span><span class="n">const</span></code>函数的特征(因为<code class="codehilite"><span class="n">const</span></code>函数可以保证其数据成员不修改)。</p>
+<p>除此之外，通过<code class="codehilite"><span class="o">#</span><span class="n">define</span></code>也可以实现类似的功能，但是其原理是通过文本替换来实现的。</p>
 <h3 id="_10">修饰函数<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
-<p>当一个函数声明为<code class="codehilite">const</code>时，其表示这个一个不会修改<strong>数据成员</strong>的函数，任何企图修改数据成员的函数都会编译不通过。这样可以确保<code class="codehilite">const</code>对象调用的方法不会修改成员。</p>
+<p>当一个函数声明为<code class="codehilite"><span class="n">const</span></code>时，其表示这个一个不会修改<strong>数据成员</strong>的函数，任何企图修改数据成员的函数都会编译不通过。这样可以确保<code class="codehilite"><span class="n">const</span></code>对象调用的方法不会修改成员。</p>
 <div class="admonition info">
 <p class="admonition-title">提示</p>
-<p>虽然<code class="codehilite">const</code>函数无法修改数据成员，但是如果其成员中有一个指针，则其指针指向不能变，但仍然可以通过指针来修改内存中的数据。</p>
+<p>虽然<code class="codehilite"><span class="n">const</span></code>函数无法修改数据成员，但是如果其成员中有一个指针，则其指针指向不能变，但仍然可以通过指针来修改内存中的数据。</p>
 </div>
 <h3 id="_11">修饰指针<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
 <p>指针有两处地方可以修饰，一种是<strong>指针符号</strong>前，另一种是<strong>指针符号后</strong>，其区别如下</p>
-<p><code class="codehilite">const int *p</code>表示指向<code class="codehilite">const</code>数据的指针。其指针的指向可以修改，但是<em>不能通过该指针修改其内存中的值</em>(并没有要求其指向的是一个常量)</p>
-<p>而<code class="codehilite">int * const p</code>是一个常指针，其指向不能更改，但是<em>可以通过该指针修改内存中的值</em>。</p>
+<p><code class="codehilite"><span class="n">const</span> <span class="nb">int</span> <span class="o">*</span><span class="n">p</span></code>表示指向<code class="codehilite"><span class="n">const</span></code>数据的指针。其指针的指向可以修改，但是<em>不能通过该指针修改其内存中的值</em>(并没有要求其指向的是一个常量)</p>
+<p>而<code class="codehilite"><span class="nb">int</span> <span class="o">*</span> <span class="n">const</span> <span class="n">p</span></code>是一个常指针，其指向不能更改，但是<em>可以通过该指针修改内存中的值</em>。</p>
 <div class="admonition info">
 <p class="admonition-title">提示</p>
-<p><code class="codehilite">const int *p</code>和<code class="codehilite">int const *p</code>属于同一种东西，是指向常量的指针变量。</p>
+<p><code class="codehilite"><span class="n">const</span> <span class="nb">int</span> <span class="o">*</span><span class="n">p</span></code>和<code class="codehilite"><span class="nb">int</span> <span class="n">const</span> <span class="o">*</span><span class="n">p</span></code>属于同一种东西，是指向常量的指针变量。</p>
 </div>
-<p><code class="codehilite">const</code>设计出来主要用来 1)定义一个全局的变量 2)防止传递参数时函数内部修改变量的值。</p>
+<p><code class="codehilite"><span class="n">const</span></code>设计出来主要用来 1)定义一个全局的变量 2)防止传递参数时函数内部修改变量的值。</p>
 <h2 id="_12">浅拷贝和深拷贝<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <p>对于一般的类型来说，编译器默认的拷贝就是<mark class="critic">深拷贝</mark>。然而当类型包含<mark class="critic">指针</mark>类型的数据时，系统默认会拷贝指针的值，而不会去拷贝其内存中的值。这种通过拷贝后数据仍然是<strong>一份</strong>(占用同一块)内存空间的现象就叫做<mark class="critic">浅拷贝</mark>。浅拷贝可以减少变量所占的空间(因为需要拷贝的数据少了)，但是会导致很多问题。</p>
 <p>而问题主要出析构函数这一块，析构函数希望通过<strong>撤销动态空间来防止内存泄露</strong>，但是这样做会出现<strong>野指针</strong>的现象。</p>

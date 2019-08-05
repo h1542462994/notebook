@@ -441,6 +441,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../backend_index/" title="后端教程" class="md-nav__link">
+      后端教程
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -761,7 +773,7 @@
                 <h1 id="android-native">Android Native<a class="headerlink" href="#android-native" title="Permanent link">&para;</a></h1>
 <div class="admonition info">
 <p class="admonition-title">提示</p>
-<p>Android开发框架(其中也包括全平台开发框架)除了<code class="codehilite">Native</code>外，还有<code class="codehilite">Flutter</code>、<code class="codehilite">ReactNative</code>以及本人一直调教不了的<code class="codehilite">Xamarin Forms</code>，本人所讲的教程主要围绕安卓原生应用展开。</p>
+<p>Android开发框架(其中也包括全平台开发框架)除了<code class="codehilite"><span class="n">Native</span></code>外，还有<code class="codehilite"><span class="n">Flutter</span></code>、<code class="codehilite"><span class="n">ReactNative</span></code>以及本人一直调教不了的<code class="codehilite"><span class="n">Xamarin</span> <span class="n">Forms</span></code>，本人所讲的教程主要围绕安卓原生应用展开。</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">读者须知</p>
@@ -784,14 +796,14 @@
 </div>
 <h3 id="_3">代码实现<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <h4 id="1">1.安装依赖<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
-<p>打开<code class="codehilite">build.gradle(Module:app)</code>，在<code class="codehilite">dependencies</code>加入以下两行</p>
-<div class="codehilite"><pre><span></span>//viewModel(视图模型) includes(observer&lt;T&gt;)
-implementation &#39;androidx.lifecycle:lifecycle-extensions:2.0.0&#39;
-implementation &#39;androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0&#39;
+<p>打开<code class="codehilite"><span class="n">build</span><span class="p">.</span><span class="n">gradle</span><span class="p">(</span><span class="n">Module</span><span class="p">:</span><span class="n">app</span><span class="p">)</span></code>，在<code class="codehilite"><span class="n">dependencies</span></code>加入以下两行</p>
+<div class="codehilite"><pre><span></span><span class="o">//</span><span class="n">viewModel</span><span class="p">(</span><span class="err">视图模型</span><span class="p">)</span> <span class="n">includes</span><span class="p">(</span><span class="n">observer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="k">implementation</span> <span class="s1">&#39;androidx.lifecycle:lifecycle-extensions:2.0.0&#39;</span>
+<span class="k">implementation</span> <span class="s1">&#39;androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0&#39;</span>
 </pre></div>
 
 <h4 id="2">2.创建存储类<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
-<p>在这里使用全局的<code class="codehilite">Storage</code>类，该类的编写如下:</p>
+<p>在这里使用全局的<code class="codehilite"><span class="k">Storage</span></code>类，该类的编写如下:</p>
 <div class="codehilite"><pre><span></span><span class="k">package</span> <span class="nn">com.tty.myday.data</span>
 
 <span class="k">import</span> <span class="nn">androidx.lifecycle.LiveData</span>
@@ -815,7 +827,7 @@ implementation &#39;androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0&#39;
     <span class="k">var</span> <span class="py">userName</span> <span class="p">=</span> <span class="n">MutableLiveData</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;()</span>
     <span class="c1">//endregion</span>
 
-    <span class="k">companion</span> <span class="k">object</span> <span class="err">{</span>
+    <span class="k">companion</span> <span class="k">object</span> <span class="p">{</span>
         <span class="k">private</span> <span class="k">var</span> <span class="py">instance</span><span class="p">:</span><span class="n">Storage</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span>
 
         <span class="k">fun</span> <span class="nf">get</span><span class="p">():</span><span class="n">Storage</span><span class="p">{</span>
@@ -831,7 +843,7 @@ implementation &#39;androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0&#39;
 </pre></div>
 
 <h4 id="3observer">3.创建Observer和修改数据<a class="headerlink" href="#3observer" title="Permanent link">&para;</a></h4>
-<p>要实现观察者模式需要使用<code class="codehilite">MutableLiveData&lt;T&gt;</code>类的对象。1.该对象的<code class="codehilite">value</code>属性为内部存储的值，其内部重写了<code class="codehilite">setter</code>，使得其可以通知数据已经更改。2.该对象的<code class="codehilite">observe()</code>函数为创建观察器。使用该类可以更好的实现数据驱动。</p>
+<p>要实现观察者模式需要使用<code class="codehilite"><span class="n">MutableLiveData</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span></code>类的对象。1.该对象的<code class="codehilite"><span class="n">value</span></code>属性为内部存储的值，其内部重写了<code class="codehilite"><span class="n">setter</span></code>，使得其可以通知数据已经更改。2.该对象的<code class="codehilite"><span class="n">observe</span><span class="p">()</span></code>函数为创建观察器。使用该类可以更好的实现数据驱动。</p>
 <p>当你创建视图时你应该写以下代码：</p>
 <div class="codehilite"><pre><span></span><span class="c1">//一般在Activity的onCreate()内写</span>
 <span class="n">storage</span> <span class="p">=</span> <span class="n">Storage</span><span class="p">.</span><span class="k">get</span><span class="p">()</span>
@@ -841,7 +853,7 @@ implementation &#39;androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0&#39;
 </pre></div>
 
 <p>当你需要更改数据时可以编写以下代码</p>
-<div class="codehilite"><pre><span></span>storage.userName.value = &quot;xxx&quot;
+<div class="codehilite"><pre><span></span><span class="k">storage</span><span class="p">.</span><span class="n">userName</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="ss">&quot;xxx&quot;</span>
 </pre></div>
 
 <div class="admonition warning">
@@ -849,14 +861,14 @@ implementation &#39;androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0&#39;
 <p>更改数据需要在uiThread上执行，否则会发生错误java.lang.IllegalStateException: Cannot invoke setValue on a background thread。</p>
 </div>
 <h4 id="4">4.整合以上代码，并观察效果。<a class="headerlink" href="#4" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span>// onCreate()
-storage = Storage.get()
-storage.userName.observe(this,Observer&lt;String&gt;( value -&gt; {
-    tv1.text = value
-}))
-btn1.setOnClickListener{ view -&gt; {
-    storage.userName.value = &quot;hello&quot;
-}}
+<div class="codehilite"><pre><span></span><span class="o">//</span> <span class="n">onCreate</span><span class="p">()</span>
+<span class="k">storage</span> <span class="o">=</span> <span class="k">Storage</span><span class="p">.</span><span class="k">get</span><span class="p">()</span>
+<span class="k">storage</span><span class="p">.</span><span class="n">userName</span><span class="p">.</span><span class="n">observe</span><span class="p">(</span><span class="n">this</span><span class="p">,</span><span class="n">Observer</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">(</span> <span class="n">value</span> <span class="o">-&gt;</span> <span class="err">{</span>
+    <span class="n">tv1</span><span class="p">.</span><span class="nb">text</span> <span class="o">=</span> <span class="n">value</span>
+<span class="err">}</span><span class="p">))</span>
+<span class="n">btn1</span><span class="p">.</span><span class="n">setOnClickListener</span><span class="err">{</span> <span class="k">view</span> <span class="o">-&gt;</span> <span class="err">{</span>
+    <span class="k">storage</span><span class="p">.</span><span class="n">userName</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="ss">&quot;hello&quot;</span>
+<span class="err">}}</span>
 </pre></div>
 
 <details class="question"><summary>思考上述代码的效果</summary><p>你会发现按下按钮之后，tv1显示"Hello"，请思考实现的过程。</p>
@@ -866,9 +878,9 @@ btn1.setOnClickListener{ view -&gt; {
 <p>写了这么多程序的你，还在使用Message+Handler+Looper这种古老的手段的吗，对于异步，你可以更优雅的使用kotlin的协程(Coroutines)。这样你就可以更加方便的写异步了。</p>
 <h3 id="_5">代码实现<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <h4 id="1_1">1.安装依赖<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h4>
-<p>打开<code class="codehilite">build.gradle(Module:app)</code>，在<code class="codehilite">dependencies</code>加入以下一行</p>
-<div class="codehilite"><pre><span></span>//kotlin.coroutines(协程)
-implementation &#39;org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0&#39;
+<p>打开<code class="codehilite"><span class="n">build</span><span class="p">.</span><span class="n">gradle</span><span class="p">(</span><span class="n">Module</span><span class="p">:</span><span class="n">app</span><span class="p">)</span></code>，在<code class="codehilite"><span class="n">dependencies</span></code>加入以下一行</p>
+<div class="codehilite"><pre><span></span><span class="o">//</span><span class="n">kotlin</span><span class="p">.</span><span class="n">coroutines</span><span class="p">(</span><span class="err">协程</span><span class="p">)</span>
+<span class="k">implementation</span> <span class="s1">&#39;org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0&#39;</span>
 </pre></div>
 
 <h4 id="2_1">2.开启异步线程<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h4>
@@ -885,12 +897,12 @@ implementation &#39;org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0&#39;
 <h2 id="_6">备忘录<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <h3 id="_7">样式<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <h4 id="_8">设置应用为无边框<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
-<p>打开<code class="codehilite">res\values\styles.xml</code>在<code class="codehilite">AppTheme</code>中加入：</p>
+<p>打开<code class="codehilite"><span class="n">res</span><span class="err">\</span><span class="k">values</span><span class="err">\</span><span class="n">styles</span><span class="p">.</span><span class="n">xml</span></code>在<code class="codehilite"><span class="n">AppTheme</span></code>中加入：</p>
 <div class="codehilite"><pre><span></span><span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;windowNoTitle&quot;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/item&gt;</span>
 </pre></div>
 
 <h4 id="_9">设置字体为粗体<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span>textStyle=&quot;bold&quot;
+<div class="codehilite"><pre><span></span><span class="n">textStyle</span><span class="o">=</span><span class="ss">&quot;bold&quot;</span>
 </pre></div>
 
 <div class="footnote">

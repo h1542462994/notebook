@@ -334,6 +334,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../backend_index/" title="后端教程" class="md-nav__link">
+      后端教程
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -556,18 +568,18 @@
 <p class="admonition-title">需要下载Tomcat</p>
 <p>缺少的包依赖<mark class="critic">Tomcat</mark>运行环境，<a href="http://tomcat.apache.org/">点击链接</a>下载合适的版本</p>
 </div>
-<p>在项目的根目录创建一个<code class="codehilite">lib</code>的文件夹，将下载的<code class="codehilite">tar.gz</code>解压，将<code class="codehilite">lib</code>文件夹中<code class="codehilite">jsp-api</code>和<code class="codehilite">servlet-api</code>移到刚刚创建的<code class="codehilite">lib</code>目录下。</p>
-<p>点击<mark class="critic">File &gt; Project Structure...</mark>选择<mark class="critic">Project Settings</mark>的<mark class="critic">Libraries</mark>子项，在<mark class="critic">KolinJavaRuntime</mark>的右面选择<code class="codehilite">+</code>号，然后选中创建的<code class="codehilite">lib</code>文件夹。然后确认更改。</p>
+<p>在项目的根目录创建一个<code class="codehilite"><span class="n">lib</span></code>的文件夹，将下载的<code class="codehilite"><span class="n">tar</span><span class="p">.</span><span class="n">gz</span></code>解压，将<code class="codehilite"><span class="n">lib</span></code>文件夹中<code class="codehilite"><span class="n">jsp</span><span class="o">-</span><span class="n">api</span></code>和<code class="codehilite"><span class="n">servlet</span><span class="o">-</span><span class="n">api</span></code>移到刚刚创建的<code class="codehilite"><span class="n">lib</span></code>目录下。</p>
+<p>点击<mark class="critic">File &gt; Project Structure...</mark>选择<mark class="critic">Project Settings</mark>的<mark class="critic">Libraries</mark>子项，在<mark class="critic">KolinJavaRuntime</mark>的右面选择<code class="codehilite"><span class="o">+</span></code>号，然后选中创建的<code class="codehilite"><span class="n">lib</span></code>文件夹。然后确认更改。</p>
 <p>选择<mark class="critic">Artifacts</mark>，然后一直双击<mark class="critic">Available Elements</mark>的子项，把所有可用的元素全部导入。</p>
 <h3 id="4">4.配置启动器<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
-<p>回到代码编辑界面，点击<mark class="critic">Add Configuration...</mark>，然后点击<code class="codehilite">+</code>号，找到<mark class="critic">Tomcat Server&gt; Local</mark>(在more items里)，切换到<mark class="critic">Deployment</mark>目录，选择右边的<code class="codehilite">+</code>号，选择<mark class="critic">Artifists</mark>，修改下面的<mark class="critic">Application context</mark>为合适的路径(本例子以<code class="codehilite">server</code>举例)。然后确认更改。</p>
+<p>回到代码编辑界面，点击<mark class="critic">Add Configuration...</mark>，然后点击<code class="codehilite"><span class="o">+</span></code>号，找到<mark class="critic">Tomcat Server&gt; Local</mark>(在more items里)，切换到<mark class="critic">Deployment</mark>目录，选择右边的<code class="codehilite"><span class="o">+</span></code>号，选择<mark class="critic">Artifists</mark>，修改下面的<mark class="critic">Application context</mark>为合适的路径(本例子以<code class="codehilite"><span class="n">server</span></code>举例)。然后确认更改。</p>
 <p>运行，查看效果，如果你看到浏览器弹出一个页面，则表示配置成功。</p>
 <div class="admonition note">
 <p class="admonition-title">提示</p>
 <p>如果看到端口被占用的情况，可以关闭其他已经开启的服务器。</p>
 </div>
 <h3 id="5">5.添加页面<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
-<p>在<code class="codehilite">src\main\java\</code>创建<code class="codehilite">Api.kt</code>，然后修改内容如下</p>
+<p>在<code class="codehilite"><span class="n">src</span><span class="err">\</span><span class="n">main</span><span class="err">\</span><span class="n">java</span><span class="err">\</span></code>创建<code class="codehilite"><span class="n">Api</span><span class="p">.</span><span class="n">kt</span></code>，然后修改内容如下</p>
 <div class="codehilite"><pre><span></span><span class="n">package</span> <span class="n">main</span>
 
 <span class="kn">import</span> <span class="nn">javax.servlet.annotation.WebServlet</span>
@@ -586,7 +598,7 @@
 <span class="p">}</span>
 </pre></div>
 
-<p>运行，输入<code class="codehilite">./server/api</code>查看结果，如果看到<code class="codehilite">hello</code>，就表示运行成功了。</p>
+<p>运行，输入<code class="codehilite"><span class="p">.</span><span class="o">/</span><span class="n">server</span><span class="o">/</span><span class="n">api</span></code>查看结果，如果看到<code class="codehilite"><span class="n">hello</span></code>，就表示运行成功了。</p>
 <div class="footnote">
 <hr />
 <ol>

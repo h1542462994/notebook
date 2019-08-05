@@ -253,6 +253,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../backend_index/" title="后端教程" class="md-nav__link">
+      后端教程
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -580,8 +592,8 @@
 <h2 id="_2">提示信息<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>提示信息总共分为11种样式，每一种样式都支持多种关键字，比如note可以用seealso替代，summary可以用tldr替代</p>
 <h3 id="_3">语法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span>!!! note &quot;note, seealse&quot;
-    input some text here.
+<div class="codehilite"><pre><span></span><span class="o">!!!</span> <span class="n">note</span> <span class="ss">&quot;note, seealse&quot;</span>
+    <span class="k">input</span> <span class="k">some</span> <span class="nb">text</span> <span class="n">here</span><span class="p">.</span>
 </pre></div>
 
 <div class="admonition note">
@@ -653,7 +665,7 @@
 </div>
 <div class="admonition quote">
 <p class="admonition-title">quote, cite</p>
-<p>quote 在引用其他文档时需要标注，推荐用于替代<code class="codehilite">&gt;</code>块引用。</p>
+<p>quote 在引用其他文档时需要标注，推荐用于替代<code class="codehilite"><span class="o">&gt;</span></code>块引用。</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">warning, caution, attention</p>
@@ -678,8 +690,8 @@
 <h2 id="_6">脚注<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>当一个知识点根据其他的文章来编写时，需要写脚注并指明其参考文献。或者，当一个专有词汇需要解释时，也可以用这种方式。</p>
 <h3 id="_7">语法<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span>Text[^1]
-[^1]:SomeText
+<div class="codehilite"><pre><span></span><span class="nb">Text</span><span class="p">[</span><span class="o">^</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">[</span><span class="o">^</span><span class="mi">1</span><span class="p">]:</span><span class="n">SomeText</span>
 </pre></div>
 
 <div class="footnote">
