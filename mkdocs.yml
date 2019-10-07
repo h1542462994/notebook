@@ -1,11 +1,13 @@
-site_name: 个人笔记
+site_name: igrape
 site_author: cht
 theme:
-  name: 'material'
-  language: 'zh'
-  palette:
-    primary: 'Blue'
-    accent: 'Cyan'
+    name: 'material'
+    language: 'zh'
+    palette:
+        primary: 'Blue'
+        accent: 'Cyan'
+    feature:
+        tabs: true
 extra:
     search:
         language: 'zh'
@@ -23,7 +25,9 @@ nav:
     - 资源整理: resources.md
     - 开发文档:
         - 文档编写规范: regular.md
+        - API编写规范: regular_api.md
         - 用户系统API: doc_user.md
+        - 想法: idea.md
 
 markdown_extensions:
   - meta
