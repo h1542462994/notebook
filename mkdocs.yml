@@ -12,22 +12,25 @@ extra:
     search:
         language: 'zh'
 nav:
-    - 主页: index.md
-    - 编程笔记: 
-        - Android Native: android_index.md
-        - C++: cpp_index.md
-        - Kotlin For Tomcat: kotlin_tomcat.md
-        - 深度学习: deeplearning_index.md
-        - 后端教程: backend_index.md
-    - 学科:
-        - 英语:
-            - 单词: english_word.md
-    - 资源整理: resources.md
-    - 开发文档:
-        - 文档编写规范: regular.md
-        - API编写规范: regular_api.md
-        - 用户系统API: doc_user.md
-        - 想法: idea.md
+    - 笔记:
+        - Android: notes/android.md
+        - C++: notes/cpp.md
+        - Kotlin Web: notes/kotlin_web.md
+        - 深度学习: notes/deeplearning_index.md
+        - 后端教程: notes/backend_index.md
+        - 英语单词: notes/english_word.md
+        - ubuntu: notes/ubuntu.md
+        - Windows: notes/windows.md
+        - 整理文档: notes/archive_doc.md
+    - 想法:
+        - 主页: idea/index.md
+    - 项目:
+        - 项目: project/index.md
+    - 杂项:
+        - 动态: index.md
+        - 文档规范: draft/regular.md
+        - 资源整理: draft/resources.md
+        
 
 markdown_extensions:
   - meta

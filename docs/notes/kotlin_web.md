@@ -1,4 +1,4 @@
-# Kotlin For Tomcat[^1]
+# Kotlin Web[^1]
 
 ## 搭建开发环境
 
