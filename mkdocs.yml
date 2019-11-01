@@ -21,11 +21,12 @@ nav:
         - 英语单词: notes/english_word.md
         - ubuntu: notes/ubuntu.md
         - Windows: notes/windows.md
-        - 整理文档: notes/archive_doc.md
-    - 想法:
-        - 主页: idea/index.md
+        
+    - 推文:
+        - 碎片整理: idea/archive_doc.md
+        - 向日葵: idea/page1.md
     - 项目:
-        - 项目: project/index.md
+        - TropicalTeamYard平台: project/center.md
     - 杂项:
         - 动态: index.md
         - 文档规范: draft/regular.md
