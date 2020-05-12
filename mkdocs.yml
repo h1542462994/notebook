@@ -22,6 +22,8 @@ nav:
         - ubuntu: notes/ubuntu.md
         - Windows: notes/windows.md      
     - 文章:
+        - 小说:
+            - 20.03.16 五叶: article/202002小说-五叶.md
         - 家乡:
             - 20.01.26 杨梅: article/202001家乡-杨梅.md
         - 校园:

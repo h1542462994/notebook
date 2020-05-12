@@ -10,6 +10,8 @@
 
 #### 2019年11月
 
-- [2019/11/1] 更新两篇推文: [*碎片整理*](article/archive_doc.md) [*向日葵*](article/page1.md)
+- [2019/11/1] 更新两篇推文: [*碎片整理*](article/201910碎片整理.md) [*向日葵*](article/201910向日葵.md)
 
 - [2019/11/1] 创建[*TropicalTeamYard平台项目*](project/center.md) 
+
+- [2019/5/12] 完成部分文章的迁移工作
