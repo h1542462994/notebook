@@ -20,11 +20,19 @@ nav:
         - 深度学习: notes/deeplearning_index.md
         - 后端教程: notes/backend_index.md
         - ubuntu: notes/ubuntu.md
-        - Windows: notes/windows.md
-        
-    - 推文:
-        - 碎片整理: idea/archive_doc.md
-        - 向日葵: idea/page1.md
+        - Windows: notes/windows.md      
+    - 文章:
+        - 家乡:
+            - 20.01.26 杨梅: article/202001家乡-杨梅.md
+        - 校园:
+            - 19.12.18 我与书香工大: article/201912我与书香工大.md
+            - 19.11.26 毅行记: article/201911毅行记.md
+            - 19.11.6 看见: article/201911看见.md
+            - 19.10.31 向日葵: article/201910向日葵.md
+            - 19.10.27 碎片整理: article/201910碎片整理.md
+        - 读书笔记:
+            - 挪威的森林: article/读书笔记-挪威的森林.md
+            - 漫长的告别: article/读书笔记-漫长的告别.md
     - 项目:
         - TropicalTeamYard平台: project/center.md
     - 杂项:
