@@ -13,12 +13,12 @@ extra:
         language: 'zh'
 nav:
     - 笔记:
+        - Asp.Net Core Web: notes/asp-web.md
         - Android: notes/android.md
         - C++: notes/cpp.md
         - Kotlin Web: notes/kotlin_web.md
         - 深度学习: notes/deeplearning_index.md
         - 后端教程: notes/backend_index.md
-        - 英语单词: notes/english_word.md
         - ubuntu: notes/ubuntu.md
         - Windows: notes/windows.md
         
