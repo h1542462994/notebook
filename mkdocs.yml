@@ -1,46 +1,45 @@
-site_name: igrape
+site_name: 笔记
 site_author: cht
 theme:
-    name: 'material'
+    features:
+        - tabs
+    name: material
     language: 'zh'
     palette:
-        primary: 'Blue'
-        accent: 'Cyan'
-    feature:
-        tabs: true
+        primary: 'teal'
+        accent: 'amber'
+        scheme: 'slate'
+    font:
+        text: Ubuntu
+        code: Ubuntu Mono
 extra:
     search:
         language: 'zh'
+markdown_extensions:
+    - meta
+    - admonition # 注解
+    - pymdownx.details # 折叠需要的
+    - footnotes # 脚注
+    - pymdownx.critic # 强调
+    - pymdownx.inlinehilite # 行内代码高亮
+    - pymdownx.superfences # 注解嵌套代码块
+    - pymdownx.smartsymbols # 特殊符号
+    - codehilite # 代码高亮
+    - toc:
+        permalink: true
 nav:
-    - 笔记:
-        - Asp.Net Core Web: notes/asp-web.md
+    - 主页:
+        - 更新日志: index.md
+    - 系统与工具:
+        - ubuntu: notes/ubuntu.md
+        - Windows: notes/windows.md    
+    - 编程与开发:
+        - Asp.Net Core: notes/asp-web.md
         - Android: notes/android.md
         - C++: notes/cpp.md
         - Kotlin Web: notes/kotlin_web.md
-        - 深度学习: notes/deeplearning_index.md
         - 后端教程: notes/backend_index.md
-        - ubuntu: notes/ubuntu.md
-        - Windows: notes/windows.md      
-    - 文章:
-        - 小说:
-            - 20.03.16 五叶: article/202002小说-五叶.md
-            - 20.05.29 儿童节的礼物: article/202005小说-儿童节的礼物.md
-            - 20.06.29 五叶星: article/202006五叶星.md
-        - 家乡:
-            - 20.01.26 杨梅: article/202001家乡-杨梅.md
-        - 校园:
-            - 19.12.18 我与书香工大: article/201912我与书香工大.md
-            - 19.11.26 毅行记: article/201911毅行记.md
-            - 19.11.6 看见: article/201911看见.md
-            - 19.10.31 向日葵: article/201910向日葵.md
-            - 19.10.27 碎片整理: article/201910碎片整理.md
-        - 读书笔记:
-            - 挪威的森林: article/读书笔记-挪威的森林.md
-            - 漫长的告别: article/读书笔记-漫长的告别.md
-    - 项目:
-        - TropicalTeamYard平台: project/center.md
     - 杂项:
-        - 动态: index.md
         - 文档规范: draft/regular.md
         - 资源整理: draft/resources.md
         
