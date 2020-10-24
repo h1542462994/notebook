@@ -34,11 +34,18 @@ nav:
         - ubuntu: notes/ubuntu.md
         - Windows: notes/windows.md    
     - 编程与开发:
+        - web:
+            - start: notes/start.md
+            - struts2: notes/struts2.md
+            - Kotlin Web: notes/kotlin_web.md
+            - asp.net core: notes/asp-web.md
         - api: notes/api.md
-        - Asp.Net Core: notes/asp-web.md
-        - Android: notes/android.md
+        
+        - Android: 
+            - 原生: notes/android.md
+            - Flutter: notes/flutter.md
         - C++: notes/cpp.md
-        - Kotlin Web: notes/kotlin_web.md
+        
         - 后端教程: notes/backend_index.md
     - 杂项:
         - 文档规范: draft/regular.md
