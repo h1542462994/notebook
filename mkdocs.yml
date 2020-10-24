@@ -34,6 +34,7 @@ nav:
         - ubuntu: notes/ubuntu.md
         - Windows: notes/windows.md    
     - 编程与开发:
+        - api: notes/api.md
         - Asp.Net Core: notes/asp-web.md
         - Android: notes/android.md
         - C++: notes/cpp.md
