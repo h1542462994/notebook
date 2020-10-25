@@ -237,3 +237,25 @@ public class IndexAction extends ActionSupport {
 在菜单栏中输入`http://localhost:8080/strut2-proj3/index.action`，如果显示"Hello world!"就表示配置成功了。
 
 ![图片](./../assets/img/struts-19.png)
+
+### 添加国际化(i18n)的支持
+
+在项目文件夹的`src\resources`中，添加`struts.properties`，然后添加下列内容。
+
+```
+struts.custom.i18n.resources=local.message
+struts.locale=zh-CN
+struts.i18n.encoding=GBK
+```
+
+然后在`src\resources`中，添加`local`文件夹，然后添加`Resource Bundle`
+
+![图片](./../assets/img/web-5.png)
+
+命名为`message`，然后添加两个Locale，分别为`en_US`和`zh_CN`
+
+![图片](./../assets/img/web-6.png)
+
+切换到`Resource Bundle`，进行编辑。
+
+![图片](./../assets/img/web-7.png)
