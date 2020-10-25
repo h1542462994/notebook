@@ -238,7 +238,9 @@ public class IndexAction extends ActionSupport {
 
 ![图片](./../assets/img/struts-19.png)
 
-### 添加国际化(i18n)的支持
+### 国际化
+
+#### 添加国际化(i18n)的支持
 
 在项目文件夹的`src\resources`中，添加`struts.properties`，然后添加下列内容。
 
@@ -259,3 +261,87 @@ struts.i18n.encoding=GBK
 切换到`Resource Bundle`，进行编辑。
 
 ![图片](./../assets/img/web-7.png)
+
+#### 国际化乱码
+
+打开`File>Setting`，找到`Editor>File Encoding`栏
+
+将`Project Encoding`修改为**UTF-8**，再勾选下方的**Transparent native-to-ascii conversion**
+
+![图片](./../assets/img/struts-20.png)
+
+### 拦截器
+
+#### 添加拦截器
+
+在`src\main\java\cn.edu.zjut`下创建package`interceptors`，然后创建`AuthorityInterceptor.java`，代码如下
+
+```java
+package cn.edu.zjut.interceptors;
+
+import com.opensymphony.xwork2.*;
+import com.opensymphony.xwork2.interceptor.*;
+
+import java.util.Map;
+
+public class AuthorityInterceptor extends AbstractInterceptor {
+    @Override
+    public String intercept(ActionInvocation invocation) throws Exception {
+        System.out.println("Authority Interceptor executed!");
+        ActionContext actionContext = invocation.getInvocationContext();
+        Map<String, Object> session = actionContext.getSession();
+        String user = (String)session.get("user");
+        if (user != null){
+            return invocation.invoke();
+        } else {
+            actionContext.put("tip", "您还没有登录，请输入用户名和密码登录系统");
+            return Action.LOGIN;
+        }
+    }
+}
+```
+
+然后在`struts.xml`中添加对应的配置，参考配置如下
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="strutsBean" extends="struts-default" namespace="/">
+        <interceptors>
+            <interceptor name="authority" class="cn.edu.zjut.interceptors.AuthorityInterceptor"/>
+        </interceptors>
+        <action name="index" class="cn.edu.zjut.action.IndexAction" method="execute">
+            <result name="success">/index.jsp</result>
+        </action>
+        <action name="login" class="cn.edu.zjut.action.UserAction" method="login">
+            <result name="success">/loginSuccess.jsp</result>
+            <result name="fail">/login.jsp</result>
+            <result name="input">/login.jsp</result>
+        </action>
+        <action name="register" class="cn.edu.zjut.action.UserAction" method="register">
+            <result name="success">/registerSuccess.jsp</result>
+            <result name="fail">/register.jsp</result>
+            <result name="input">/register.jsp</result>
+        </action>
+        <action name="allItems" class="cn.edu.zjut.action.ItemAction" method="getAllItems">
+            <result name="success">/itemList.jsp</result>
+            <!-- 配置系统默认拦截器 -->
+            <interceptor-ref name="defaultStack"/>
+            <!-- 配置authority拦截器 -->
+            <interceptor-ref name="authority"/>
+        </action>
+    </package>
+</struts>
+```
+
+#### 拦截器的配置
+
+[教程](https://www.cnblogs.com/libin6505/p/10429283.html)
+
+## 提高
+
