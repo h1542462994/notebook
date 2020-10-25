@@ -35,7 +35,7 @@ nav:
         - Windows: notes/windows.md    
     - 编程与开发:
         - web:
-            - start: notes/start.md
+            - start: notes/web_start.md
             - struts2: notes/struts2.md
             - Kotlin Web: notes/kotlin_web.md
             - asp.net core: notes/asp-web.md
