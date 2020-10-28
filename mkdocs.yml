@@ -37,21 +37,19 @@ nav:
         - web:
             - start: notes/web_start.md
             - struts2: notes/struts2.md
+            - spring: notes/spring.md
             - Kotlin Web: notes/kotlin_web.md
             - asp.net core: notes/asp-web.md
         - api: notes/api.md
-        
         - Android: 
             - 原生: notes/android.md
             - Flutter: notes/flutter.md
         - C++: notes/cpp.md
-        
         - 后端教程: notes/backend_index.md
     - 杂项:
         - 文档规范: draft/regular.md
         - 资源整理: draft/resources.md
         
-
 markdown_extensions:
   - meta
   - admonition # 注解
