@@ -1,6 +1,7 @@
 !!! info "类型：笔记"
     前置：*web\start* <br/>
-    2020.10.24 创建并添加**项目配置**部分
+    2020.10.24 创建并添加**项目配置**部分 <br/>
+    2020.11.3 创建并添加**Hibernate**部分
 
 ## struts2项目的创建和配置
 
@@ -345,3 +346,160 @@ public class AuthorityInterceptor extends AbstractInterceptor {
 
 ## 提高
 
+### 添加Hibernate框架的支持
+
+!!! tip "配置环境"
+    tomcat：apache-tomcat-9.0.38 <br/>
+    IDE：IntelliJ IDEA 2020.2.3 <br/>
+    Language：java8 / java 11 <br/>
+    package manager：gradle-6.5.1-all <br/>
+    struts2-core：2.5.25 <br/>
+    struts2-dojo-plugin：2.3.37 <br/>
+    mysql: <br/>
+
+#### 安装数据库
+
+这里安装的是Mysql数据库，具体操作逻辑见安装Mysql教程
+
+#### 使用IDE连接数据库
+
+点击最右侧的`Database`，然后选择`Data Source`>`Mysql`，然后安装`Mysql JDBC驱动`
+
+![截图](./../assets/img/hibernate-1.png)
+
+!!! warning "网络问题"
+    在安装此Mysql JDBC驱动很容易出现网络异常的问题，因此JDBC驱动很可能下载不到，具体方法暂时还没有。需要之后的补充
+
+然后设置好各个参数，点击`Test Connection`，观察是否连通。
+
+![截图](./../assets/img/hibernate-2.png)
+
+如果连通后，新建一个`database`，命名为`testdb`（或者改为其他）
+
+#### 添加必要的依赖
+
+修改项目目录下的`build.gradle`文件，然后添加以下两个依赖。修改后的`build.gradle`文件参考如下，然后build。
+
+``` hl_lines="28-33" 
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'cn.edu.zjut'
+version '1.0'
+
+repositories {
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.6.2'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compileOnly('javax:javaee-web-api:8.0.1')
+
+    // 加入struts2-core核心库
+    compile group: 'org.apache.struts', name: 'struts2-core', version: '2.5.25'
+    // 使用dojo扩展库
+    compile group: 'org.apache.struts', name: 'struts2-dojo-plugin', version: '2.3.37'
+    // commons-logging
+    compile 'commons-logging:commons-logging:1.1.1'
+    // hibernate
+    compile 'org.hibernate:hibernate-core:5.4.22.Final'
+    // mysql
+    compile 'mysql:mysql-connector-java:8.0.22'
+
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}
+```
+
+### 新建数据表
+
+#### 新建一个Mysql的数据表
+
+```sql
+create table customer
+(
+   customerId int not null comment '用户编号',
+   account varchar(20) null comment '登录用户名',
+   password varchar(20) null comment '登录密码',
+   sex tinyint(1) null comment '性别',
+   birthday date null comment '出生日期',
+   phone varchar(20) null comment '联系电话',
+   email varchar(100) null comment '电子邮箱',
+   address varchar(200) null comment '联系地址',
+   zipcode varchar(10) null comment '邮政编码',
+   fax varchar(20) null comment '传真号码',
+   constraint customer_pk
+      primary key (customerId)
+);
+```
+
+#### 插入三条记录
+
+```sql
+insert into customer values(1,'zjut','Zjut',null,null,null,null,null,null,null);
+insert into customer values(2,'admin','Admin',null,null,null,null,null,null,null);
+insert into customer values(3,'temp','Temp',null,null,null,null,null,null,null);
+```
+
+### 创建po类和对应的配置
+
+#### po
+
+创建包名`cn.edu.zjut.po`，然后创建`Customer.java`，代码如下
+
+```java
+package cn.edu.zjut.po;
+
+import java.io.Serializable;
+import java.util.Date;
+
+
+public class Customer implements Serializable {
+    public Customer() {
+    }
+
+    public Customer(int customerId, String account, String password, String name, boolean sex, Date birthday, String phone, String email, String address, String zipcode, String fax) {
+        this.customerId = customerId;
+        this.account = account;
+        this.password = password;
+        this.name = name;
+        this.sex = sex;
+        this.birthday = birthday;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.zipcode = zipcode;
+        this.fax = fax;
+    }
+
+    private int customerId;
+    private String account;
+    private String password;
+    private String name;
+    private boolean sex;
+    private Date birthday;
+    private String phone;
+    private String email;
+    private String address;
+    private String zipcode;
+    private String fax;
+
+    // 省略getters/setters
+}
+```
+
+#### hibernate mapping config
