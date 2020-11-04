@@ -50,14 +50,16 @@ nav:
         - 文档规范: draft/regular.md
         - 资源整理: draft/resources.md 
 markdown_extensions:
-  - meta
-  - admonition # 注解
-  - pymdownx.details # 折叠需要的
-  - footnotes # 脚注
-  - pymdownx.critic # 强调
-  - pymdownx.inlinehilite # 行内代码高亮
-  - pymdownx.superfences # 注解嵌套代码块
-  - pymdownx.smartsymbols # 特殊符号
-  - codehilite # 代码高亮
-  - toc:
-      permalink: true
+    - meta
+    - admonition # 注解
+    - pymdownx.details # 折叠需要的
+    - footnotes # 脚注
+    - pymdownx.critic # 强调
+    - pymdownx.inlinehilite # 行内代码高亮
+    - pymdownx.superfences # 注解嵌套代码块
+    - pymdownx.smartsymbols # 特殊符号
+    - codehilite # 代码高亮
+    - pymdownx.highlight:
+        linenums: true
+    - toc:
+        permalink: true

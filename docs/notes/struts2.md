@@ -376,6 +376,8 @@ public class AuthorityInterceptor extends AbstractInterceptor {
 
 如果连通后，新建一个`database`，命名为`testdb`（或者改为其他）
 
+#### 新建数据库
+
 #### 添加必要的依赖
 
 修改项目目录下的`build.gradle`文件，然后添加以下两个依赖。修改后的`build.gradle`文件参考如下，然后build。
@@ -435,6 +437,7 @@ create table customer
    customerId int not null comment '用户编号',
    account varchar(20) null comment '登录用户名',
    password varchar(20) null comment '登录密码',
+   name varchar(20) null comment '真实姓名',
    sex tinyint(1) null comment '性别',
    birthday date null comment '出生日期',
    phone varchar(20) null comment '联系电话',
@@ -461,7 +464,10 @@ insert into customer values(3,'temp','Temp',null,null,null,null,null,null,null);
 
 创建包名`cn.edu.zjut.po`，然后创建`Customer.java`，代码如下
 
-```java
+!!! warning "注意事项"
+    在创建po类时，应当使用可为null的对象，而不是基本类型。
+
+```java hl_lines="29"
 package cn.edu.zjut.po;
 
 import java.io.Serializable;
@@ -472,7 +478,7 @@ public class Customer implements Serializable {
     public Customer() {
     }
 
-    public Customer(int customerId, String account, String password, String name, boolean sex, Date birthday, String phone, String email, String address, String zipcode, String fax) {
+    public Customer(int customerId, String account, String password, String name, Boolean sex, Date birthday, String phone, String email, String address, String zipcode, String fax) {
         this.customerId = customerId;
         this.account = account;
         this.password = password;
@@ -490,7 +496,7 @@ public class Customer implements Serializable {
     private String account;
     private String password;
     private String name;
-    private boolean sex;
+    private Boolean sex;
     private Date birthday;
     private String phone;
     private String email;
@@ -502,4 +508,93 @@ public class Customer implements Serializable {
 }
 ```
 
-#### hibernate mapping config
+#### hibernate mapping
+
+创建目录`src\resources\cn.edu.zjut.po`（和`java`中的包路径一致），然后在该目录下创建`Customer.hbm.xml`文件，然后添加下列内容
+
+!!! warning "文件创建"
+    创建`cn\edu\zjut\po`应当一个个文件夹创建，而不应该一次创建，因为IDE中空的文件夹会自动以.连接并合并。
+
+!!! info "注意事项"
+    在`hibernate-mapping>class`中，应当使用schema而不是catogory来指定数据库的名称。
+
+```xml hl_lines="6"
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="cn.edu.zjut.po.Customer" table="customer" schema="chtHibernateDb">
+        <id name="customerId" type="int">
+            <column name="customerId"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="account" type="string">
+            <column name="account" length="20" unique="true"/>
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="20"/>
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="20"/>
+        </property>
+        <property name="sex" type="java.lang.Boolean">
+            <column name="sex"/>
+        </property>
+        <property name="birthday" type="date">
+            <column name="birthday" length="10"/>
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="20"/>
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100"/>
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="200"/>
+        </property>
+        <property name="zipcode" type="string">
+            <column name="zipcode" length="10"/>
+        </property>
+        <property name="fax" type="string">
+            <column name="fax" length="20"/>
+        </property>
+    </class>
+</hibernate-mapping>
+```
+
+#### hibernate config
+
+在`src\resources`下创建`hibernate.cfg.xml`文件，内容填充如下。
+
+!!! info "注意事项"
+    请将`$url`,`$user`,`$password`修改为自己的数据库配置。<br/>
+    `driver_class`应当使用`com.mysql.cj.jdbc.Driver`，而不是`com.mysql.jdbc.Driver`
+
+```xml hl_lines="8 11 14 17"
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory name="HibernateSessionFactory">
+        <property name="hibernate.connection.driver_class">
+            com.mysql.cj.jdbc.Driver
+        </property>
+        <property name="hibernate.connection.url">
+            ${url}
+        </property>
+        <property name="hibernate.connection.username">
+            ${user}
+        </property>
+        <property name="hibernate.connection.password">
+            ${password}
+        </property>
+        <property name="hibernate.dialect">
+            org.hibernate.dialect.MySQLDialect
+        </property>
+        <mapping resource="cn/edu/zjut/po/Customer.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>
+```
+
