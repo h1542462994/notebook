@@ -1,7 +1,8 @@
 !!! info "类型：笔记"
     前置：*web\start* <br/>
     2020.10.24 创建并添加**项目配置**部分 <br/>
-    2020.11.3 创建并添加**Hibernate**部分
+    2020.11.3 创建并添加**Hibernate**部分 <br/>
+    2020.11.9 修改**Hibernate**部分
 
 ## struts2项目的创建和配置
 
@@ -378,6 +379,13 @@ public class AuthorityInterceptor extends AbstractInterceptor {
 
 #### 新建数据库
 
+!!! info "注意事项"
+    创建数据库时，请一定按照下列方式手动创建，否则会造成无法存储中文的问题。
+
+```sql
+create database if not exists chtHibernateDb character set utf8mb4 collate utf8mb4_bin;
+```
+
 #### 添加必要的依赖
 
 修改项目目录下的`build.gradle`文件，然后添加以下两个依赖。修改后的`build.gradle`文件参考如下，然后build。
@@ -427,9 +435,9 @@ test {
 }
 ```
 
-### 新建数据表
+#### 新建数据表
 
-#### 新建一个Mysql的数据表
+##### 新建一个Mysql的数据表
 
 ```sql
 create table customer
@@ -450,7 +458,7 @@ create table customer
 );
 ```
 
-#### 插入三条记录
+##### 插入三条记录
 
 ```sql
 insert into customer values(1,'zjut','Zjut',null,null,null,null,null,null,null);
@@ -458,9 +466,9 @@ insert into customer values(2,'admin','Admin',null,null,null,null,null,null,null
 insert into customer values(3,'temp','Temp',null,null,null,null,null,null,null);
 ```
 
-### 创建po类和对应的配置
+#### 创建po类和对应的配置
 
-#### po
+##### po
 
 创建包名`cn.edu.zjut.po`，然后创建`Customer.java`，代码如下
 
@@ -508,7 +516,7 @@ public class Customer implements Serializable {
 }
 ```
 
-#### hibernate mapping
+##### hibernate mapping
 
 创建目录`src\resources\cn.edu.zjut.po`（和`java`中的包路径一致），然后在该目录下创建`Customer.hbm.xml`文件，然后添加下列内容
 
@@ -563,13 +571,14 @@ public class Customer implements Serializable {
 </hibernate-mapping>
 ```
 
-#### hibernate config
+##### hibernate config
 
 在`src\resources`下创建`hibernate.cfg.xml`文件，内容填充如下。
 
 !!! info "注意事项"
     请将`$url`,`$user`,`$password`修改为自己的数据库配置。<br/>
-    `driver_class`应当使用`com.mysql.cj.jdbc.Driver`，而不是`com.mysql.jdbc.Driver`
+    `driver_class`应当使用`com.mysql.cj.jdbc.Driver`，而不是`com.mysql.jdbc.Driver` <br/>
+    `$url`请以`?useUnicode=true&characterEncoding=utf8`结尾，来解决中文乱码的问题。在xml文档中，使用`?useUnicode=true&amp;characterEncoding=utf8`或者`<![CDATA[jdbc:mysql://$path?useUnicode=true&characterEncoding=utf8]]>`
 
 ```xml hl_lines="8 11 14 17"
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -597,4 +606,545 @@ public class Customer implements Serializable {
     </session-factory>
 </hibernate-configuration>
 ```
+
+#### 创建SessionUtil和CustomerDao
+
+##### SessionUtil
+
+!!! info "会话管理"
+    在Hibernate中，不推荐使用`openSession()`多次创建对象，而使用`getSession()`来获取session。在这个例子中，我们使用单会话的模式来进行管理。
+
+在`cn.edu.zjut.dao`中创建SessionUtil类，进行session的管理。
+
+```java
+package cn.edu.zjut.dao;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+
+public class SessionUtil {
+    private static Session session;
+
+    public static Session getSession(){
+        if (session == null) {
+            SessionFactory sessionFactory = new Configuration()
+                    .configure().buildSessionFactory();
+            session = sessionFactory.openSession();
+        }
+        return session;
+    }
+}
+```
+
+##### CustomerDao
+
+修改`CustomerDao.java`
+
+```java
+package cn.edu.zjut.dao;
+
+import cn.edu.zjut.po.Customer;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import java.io.Serializable;
+import java.util.List;
+
+@SuppressWarnings({"unchecked"})
+public class CustomerDao implements Serializable {
+    private final Log log = LogFactory.getLog(CustomerDao.class);
+
+    public <T> List<T> findByHql(String hql) throws RuntimeException {
+        log.debug("finding LoginUser instance by hql");
+
+        Session session = SessionUtil.getSession();
+        Query<T> queryObject = (Query<T>) session.createQuery(hql);
+        return queryObject.list();
+    }
+
+    public void save(Customer customer) throws RuntimeException {
+        log.debug("saving customer instance");
+
+        Session session = SessionUtil.getSession();
+        session.save(customer);
+    }
+}
+```
+
+#### 修改UserService
+
+cn.edu.zjut.service
+
+```java
+package cn.edu.zjut.service;
+
+import cn.edu.zjut.dao.CustomerDao;
+import cn.edu.zjut.dao.SessionUtil;
+import cn.edu.zjut.po.Customer;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import java.util.List;
+
+public class UserService {
+    public boolean login(Customer loginUser) {
+        String account = loginUser.getAccount();
+        String password = loginUser.getPassword();
+        String hql = "from Customer as user where account='"
+                +account+ "' and password='" + password +"'";
+        CustomerDao dao = new CustomerDao();
+        List<Customer> customerList = dao.findByHql(hql);
+        return !customerList.isEmpty();
+    }
+
+    public void register(Customer loginUser) {
+        Session session = SessionUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        CustomerDao dao = new CustomerDao();
+        dao.save(loginUser);
+        transaction.commit();
+    }
+}
+```
+
+### Hibernate扩展
+
+#### 复合主键
+
+我们以表`item`，主键`(ISBN,title)`做为例子讲解实例。
+
+##### 改造Item
+
+首先我们改造类`Item`为`ItemPK`和`Item`两个类。带入如下
+
+cn.edu.zjut.po.ItemPK.java
+
+```java
+package cn.edu.zjut.po;
+
+import java.io.Serializable;
+
+public class ItemPK implements Serializable {
+    private String ISBN;
+    private String title;
+
+    // embering getters/setters
+}
+```
+
+cn.edu.zjut.po.Item.java
+
+```java
+package cn.edu.zjut.po;
+
+import java.sql.Blob;
+
+public class Item {
+    private ItemPK itemPK;
+    private String description;
+    private Float cost;
+    private Blob image;
+
+    public Item(){
+
+    }
+
+    public Item(ItemPK itemPK) {
+        this.itemPK = itemPK;
+    }
+
+    // embering getters/setters
+}
+```
+
+##### 修改Item.hbm.xml
+
+然后修改Item.hbm.xml，使用`<composite-id>`来标识主键，这样类对象就会和映射文件正确对应。
+
+```xml hl_lines="7-10"
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="cn.edu.zjut.po.Item" table="item" schema="chtHibernateDb">
+        <composite-id name="itemPK" class="cn.edu.zjut.po.ItemPK">
+            <key-property name="ISBN" column="ISBN"/>
+            <key-property name="title" column="title"/>
+        </composite-id>
+        <property name="description" type="string">
+            <column name="description" length="120"/>
+        </property>
+        <property name="cost" type="java.lang.Float">
+            <column name="cost"/>
+        </property>
+        <property name="image" type="java.sql.Blob">
+            <column name="image"/>
+        </property>
+    </class>
+</hibernate-mapping>
+```
+
+##### 修改itemList.jsp的OGNL表达式
+
+此时，由于`Item.java`的结构已经更改，因此应当继续修改`itemList.jsp`，代码如下
+
+```jsp hl_lines="17 18"
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>商品信息</title>
+</head>
+<body>
+    <h1>商品列表</h1>
+    <table style="border: 1px solid black">
+        <tr>
+            <th>编号</th>
+            <th>书名</th>
+            <th>说明</th>
+            <th>单价</th>
+        </tr>
+        <s:iterator value="items">
+            <tr>
+                <td><s:property value="itemPK.ISBN"/></td>
+                <td><s:property value="itemPK.title"/></td>
+                <td><s:property value="description"/></td>
+                <td><s:property value="cost"/></td>
+            </tr>
+        </s:iterator>
+    </table>
+</body>
+</html>
+```
+
+#### 基于设计的粒度设计
+
+基于设计的粒度设计适用于单表对应多类，其中多个字段构成一个聚合属性。
+
+我们以表`customer`为例进行举例。
+
+##### 改造Customer
+
+我们改造`Customer`为`Customer`和`ContactInfo`两个类。
+
+cn.edu.zjut.po.Customer.java
+
+```java hl_lines="26"
+package cn.edu.zjut.po;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class Customer implements Serializable {
+    public Customer() {
+    }
+
+    public Customer(int customerId, String account, String password, String name, Boolean sex, Date birthday, ContactInfo contactInfo) {
+        this.customerId = customerId;
+        this.account = account;
+        this.password = password;
+        this.name = name;
+        this.sex = sex;
+        this.birthday = birthday;
+        this.contactInfo = contactInfo;
+    }
+
+    private int customerId;
+    private String account;
+    private String password;
+    private String name;
+    private Boolean sex;
+    private Date birthday;
+    private ContactInfo contactInfo;
+
+    // embering getters/setters
+}
+```
+
+cn.edu.zjut.po.ContactInfo.java
+
+```java
+package cn.edu.zjut.po;
+
+import java.io.Serializable;
+
+public class ContactInfo implements Serializable {
+    private String phone;
+    private String email;
+    private String address;
+    private String zipcode;
+    private String fax;
+
+    public ContactInfo() {}
+
+    //embering getters/setters
+}
+```
+
+##### 修改Customer.hbm.xml
+
+我们使用`component`来声明构件（聚合属性）
+
+```xml hl_lines="26-42"
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="cn.edu.zjut.po.Customer" table="customer" schema="chtHibernateDb">
+        <id name="customerId" type="int">
+            <column name="customerId"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="account" type="string">
+            <column name="account" length="20" unique="true"/>
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="20"/>
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="20"/>
+        </property>
+        <property name="sex" type="java.lang.Boolean">
+            <column name="sex" length="1"/>
+        </property>
+        <property name="birthday" type="date">
+            <column name="birthday" length="10"/>
+        </property>
+        <component name="contactInfo" class="cn.edu.zjut.po.ContactInfo">
+            <property name="phone" type="string">
+                <column name="phone" length="20"/>
+            </property>
+            <property name="email" type="string">
+                <column name="email" length="100"/>
+            </property>
+            <property name="address" type="string">
+                <column name="address" length="200"/>
+            </property>
+            <property name="zipcode" type="string">
+                <column name="zipcode" length="10"/>
+            </property>
+            <property name="fax" type="string">
+                <column name="fax" length="20"/>
+            </property>
+        </component>
+    </class>
+</hibernate-mapping>
+```
+
+##### 修改register.jsp
+
+由于`Cusotmer`的结构已经更改，因此应当修改`itemList.jsp`的OGNL表达式
+
+```jsp hl_lines="19-23"
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib prefix="sx" uri="/struts-dojo-tags" %>
+<html>
+<head>
+    <title>注册页面</title>
+
+    <s:head theme="xhtml"/>
+    <sx:head parseContent="true" extraLocales="UTF-8"/>
+</head>
+<body>
+<s:form action="register" method="post">
+    <s:textfield name="loginUser.account" label="请输入用户名"/>
+    <s:password name="loginUser.password" label="请输入密码"/>
+    <s:password name="loginUser.repassword" label="重复输入密码"/>
+    <s:textfield name="loginUser.name" label="真实姓名"/>
+    <s:select list="#{0: '男', 1: '女'}" label="性别"/>
+    <sx:datetimepicker name="loginUser.birthday" displayFormat="yyyy-MM-dd" label="请输入生日"/>
+    <s:textfield name="loginUser.contactInfo.phone" label="联系电话"/>
+    <s:textfield name="loginUser.contactInfo.email" label="电子邮箱"/>
+    <s:textfield name="loginUser.contactInfo.address" label="联系地址"/>
+    <s:textfield name="loginUser.contactInfo.zipcode" label="邮政编码"/>
+    <s:textfield name="loginUser.contactInfo.fax" label="传真"/>
+    <s:submit value="注册"/>
+    <s:reset value="重置"/>
+</s:form>
+</body>
+</html>
+```
+
+#### 基于性能的粒度设计
+
+基于性能的粒度设计在于部分读取，从而减少不必要的读取，提高效率
+
+我们此例以表`item`作为例子
+
+##### 改造Item
+
+新建类`ItemBasic`和`ItemDetail`
+
+cn.edu.zjut.dao.ItemBasic.java
+
+```java
+package cn.edu.zjut.po;
+
+public class ItemBasic {
+    private String ISBN;
+    private String title;
+    private String description;
+    private Float cost;
+
+    public ItemBasic() {
+    }
+
+    public ItemBasic(String ISBN) {
+        this.ISBN = ISBN;
+    }
+
+    public ItemBasic(String ISBN, String title, String description, Float cost) {
+        this.ISBN = ISBN;
+        this.title = title;
+        this.description = description;
+        this.cost = cost;
+    }
+
+    
+    // embering getters/setters
+}
+```
+
+cn.edu.zjut.po.ItemDetail.java
+
+```java
+package cn.edu.zjut.po;
+
+import java.sql.Blob;
+
+public class ItemDetail extends ItemBasic {
+    private Blob image;
+
+    public ItemDetail() {
+    }
+
+    public ItemDetail(String ISBN) {
+        super(ISBN);
+    }
+
+    public ItemDetail(String ISBN, String title, String description, Float cost, Blob image) {
+        super(ISBN, title, description, cost);
+        this.image = image;
+    }
+
+    // embering getters/setters
+}
+```
+
+##### 修改ItemBasic.hbm.xml和ItemDetail.hbm.xml
+
+cn.edu.zjut.po.ItemBasic.hbm.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="cn.edu.zjut.po.ItemBasic" table="item" schema="chtHibernateDb">
+        <id name="ISBN" type="string">
+            <column name="ISBN" length="20"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="title" type="string">
+            <column name="title" length="30"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="120"/>
+        </property>
+        <property name="cost" type="java.lang.Float">
+            <column name="cost"/>
+        </property>
+    </class>
+</hibernate-mapping>
+```
+
+cn.edu.zjut.po.ItemDetail.hbm.xml
+
+!!! warning "显式继承"
+    当类有继承关系时，需要进行显示声明 <br/>
+    `<class polymorphism="explicit">`，否则会重复获取对象，例如下面的例子。
+
+    ![截图](./../assets/img/hibernate-4.png)
+
+```xml hl_lines="6"
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="cn.edu.zjut.po.ItemDetail" table="item" schema="chtHibernateDb" polymorphism="explicit">
+        <id name="ISBN" type="string">
+            <column name="ISBN" length="20"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="title" type="string">
+            <column name="title" length="30"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="120"/>
+        </property>
+        <property name="cost" type="java.lang.Float">
+            <column name="cost"/>
+        </property>
+        <property name="image" type="java.sql.Blob">
+            <column name="image"/>
+        </property>
+    </class>
+</hibernate-mapping>
+
+```
+
+### 附录
+
+#### 完整的Sql代码
+
+```sql hl_lines="3"
+drop database chtHibernateDb;
+
+create database if not exists chtHibernateDb character set utf8mb4 collate utf8mb4_bin;
+
+use chtHibernateDb;
+
+create table customer
+(
+    customerId int not null comment '用户编号'
+        primary key,
+    account varchar(20) null comment '登录用户名',
+    password varchar(20) null comment '登录密码',
+    name varchar(20) null comment '真实姓名',
+    sex tinyint(1) null comment '性别',
+    birthday date null comment '出生日期',
+    phone varchar(20) null comment '联系电话',
+    email varchar(100) null comment '电子邮箱',
+    address varchar(200) null comment '联系地址',
+    zipcode varchar(10) null comment '邮政编码',
+    fax varchar(20) null comment '传真号码'
+);
+
+insert into customer values(1,'zjut','Zjut',null,null,null,null,null,null,null,null);
+insert into customer values(2,'admin','Admin',null,null,null,null,null,null,null,null);
+insert into customer values(3,'temp','Temp',null,null,null,null,null,null,null,null);
+
+create table item
+(
+	ISBN varchar(20) not null comment 'ISBN号',
+	title varchar(30) null comment '书名',
+	description varchar(120) null comment '说明',
+	cost float null comment '单价',
+	image blob null comment '图片',
+	constraint item_pk
+		primary key (ISBN)
+);
+
+insert into item values ('978-7-121-12345-1','JAVAEE技术实验指导教程','WEB程序设计知识回顾、轻量级JAVAEE应用框架、企业级EJB组件编程技术、JAVAEE综合应用开发',19.95,null);
+insert into item values ('978-7-121-12345-2','JAVAEE技术', 'Struts框架、Hibernate框架、Spring框架、会话Bean、实体Bean、消息驱动Bean',29.95,null);
+```
+
 
