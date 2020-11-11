@@ -1101,9 +1101,11 @@ cn.edu.zjut.po.ItemDetail.hbm.xml
 
 ```
 
-### 附录
+### Hibernate框架个人理解
 
-#### 完整的Sql代码
+## 附录
+
+### 完整的Sql代码
 
 ```sql hl_lines="3"
 drop database chtHibernateDb;
@@ -1147,4 +1149,38 @@ insert into item values ('978-7-121-12345-1','JAVAEE技术实验指导教程','W
 insert into item values ('978-7-121-12345-2','JAVAEE技术', 'Struts框架、Hibernate框架、Spring框架、会话Bean、实体Bean、消息驱动Bean',29.95,null);
 ```
 
+## 常见bug
 
+### `<sx:datepicker>`未显示
+
+![截图](./../assets/img/struts-21.png)
+
+如上图所示，出现日期选择器空白的情况
+
+解决方案：
+
+在`.jsp`的`<head>`中添加以下代码
+
+```xml hl_lines="5"
+<head>
+    <title>登录成功</title>
+
+    <s:head theme="xhtml"/>
+    <sx:head parseContent="true" extraLocales="UTF-8"/>
+</head>
+```
+
+### 执行session.update()出错
+
+```
+org.hibernate.NonUniqueObjectException: A different object with the same identifier value was already associated with the session : [cn.edu.zjut.po.Customer#4]
+```
+
+出现的原因：
+
+在执行save()时将会绑定一个transient Object到session()，而struts2框架的变量传递是通过克隆的，因此执行update()时，拿到的customer和session中储存的不一致，而hibernate并不允许update()时出现另外一个键一致的对象。
+
+解决方法：
+
+1. 使用存储在session()中的对象，进行对象之间的数据拷贝。
+2. 每次进行更改操作时，关闭session。
