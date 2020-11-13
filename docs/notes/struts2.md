@@ -1101,7 +1101,172 @@ cn.edu.zjut.po.ItemDetail.hbm.xml
 
 ```
 
-### Hibernate框架个人理解
+#### Hibernate会话管理
+
+!!! info "会话"
+    一般来说Hibernate中Session指代一个会话，由于会话对象需要进行数据库的连接，关闭等操作，是一个比较消耗资源的对象，为了提高系统的效率，我们一般使用连接池进行管理，下面仅介绍使用HibernateUtil的自定义实现。
+
+```java
+package cn.edu.zjut.dao;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class HibernateUtil {
+    private static final String CONFIG_FILE_LOCATION="/hibernate.cfg.xml";
+    // use thread combination visitor
+    private static final ThreadLocal<Session> threadLocal = new ThreadLocal<>();
+    private static final Configuration configuration = new Configuration();
+    private static SessionFactory sessionFactory;
+
+    private static String configFile = CONFIG_FILE_LOCATION;
+
+    // static initializer is unsafe, please rewrite with injection.
+    // because we can't determine when it will be called.
+//    static {
+//        rebuildSessionFactory();
+//    }
+
+    private HibernateUtil() {} // to avoid dynamic constructor
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public static void rebuildSessionFactory(){
+        try {
+            configuration.configure(configFile);
+            sessionFactory = configuration.buildSessionFactory();
+        } catch (Exception e) {
+            // please logging by loggingFactory
+            System.err.println("%%%%Error Creating SessionFactory%%%%");
+            e.printStackTrace();
+        }
+    }
+
+    public static String getConfigFile() {
+        return configFile;
+    }
+
+    public static void setConfigFile(String configFile) {
+        HibernateUtil.configFile = configFile;
+        sessionFactory = null;
+        //rebuildSessionFactory();
+    }
+
+    public static Configuration getConfiguration() {
+        return configuration;
+    }
+
+    public static Session getSession(){
+        Session session = threadLocal.get();
+        if (session == null || !session.isOpen()) {
+            if (sessionFactory == null) {
+                rebuildSessionFactory();
+            }
+            session = sessionFactory.openSession();
+            threadLocal.set(session);
+        }
+        return session;
+    }
+
+    public static void closeSession() throws HibernateException {
+        Session session = threadLocal.get();
+        threadLocal.set(null);
+        if (session != null) {
+            session.close();
+        }
+    }
+}
+```
+
+在上面的代码中，将使用getSession()来复用连接。同时，我们定一个Dao的基类`BaseHibernateDao`，代码如下。
+
+```java
+package cn.edu.zjut.dao;
+
+import org.apache.commons.logging.Log;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import java.util.List;
+
+@SuppressWarnings({"unchecked"})
+public abstract class BaseHibernateDao<TEntity, TKey> {
+    public final Session getSession(){
+        return HibernateUtil.getSession();
+    }
+
+    protected abstract Log getLog();
+    protected abstract Class<TEntity> getEntityClass();
+
+    public List<TEntity> findByHql(String hql, Object... args) {
+        getLog().debug("finding entity by hql");
+        try {
+            Query<TEntity> queryObject = (Query<TEntity>)getSession().createQuery(hql);
+            for (int i = 0; i < args.length; ++i) {
+                queryObject.setParameter(i, args[i]);
+            }
+            return queryObject.list();
+        } catch (RuntimeException e) {
+            getLog().debug("find entity by hql failed", e);
+            throw e;
+        }
+    }
+
+    public void save(TEntity entity) {
+        getLog().debug("saving entity");
+        try {
+            getSession().save(entity);
+            getLog().debug("save entity successful");
+        } catch (RuntimeException e) {
+            getLog().error("save failed", e);
+            throw e;
+        }
+    }
+
+    public void update(TEntity entity) {
+        getLog().debug("update entity");
+        try {
+            getSession().update(entity);
+            getLog().debug("update entity successful");
+        } catch (RuntimeException e) {
+            getLog().error("update failed", e);
+            throw e;
+        }
+    }
+
+    public void delete(TEntity entity){
+        getLog().debug("delete entity");
+        try {
+            getSession().delete(entity);
+            getLog().debug("delete entity successful");
+        } catch (RuntimeException e) {
+            getLog().error("delete failed", e);
+            throw e;
+        }
+    }
+
+    public TEntity find(TKey key) {
+        getLog().debug("find entity by key");
+        TEntity entity;
+        try {
+            entity = getSession().find(getEntityClass(), key);
+            getLog().debug("find entity by key successful");
+        } catch (RuntimeException e) {
+            getLog().error("find entity by key failed", e);
+            throw e;
+        }
+        return entity;
+    }
+}
+```
+
+#### HQL语句
+
+## Hibernate框架个人理解
 
 ## 附录
 
