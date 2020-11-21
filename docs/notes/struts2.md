@@ -2,7 +2,8 @@
     前置：*web\start* <br/>
     2020.10.24 创建并添加**项目配置**部分 <br/>
     2020.11.3 创建并添加**Hibernate**部分 <br/>
-    2020.11.9 修改**Hibernate**部分
+    2020.11.9 修改**Hibernate**部分 <br/>
+    2020.11.19 在**Hibernate**中添加**c3p0**的相关知识。
 
 ## struts2项目的创建和配置
 
@@ -100,7 +101,7 @@
 
 参考配置如下，然后重新build项目
 
-```gradle
+```groovy
 plugins {
     id 'java'
     id 'war'
@@ -110,7 +111,8 @@ group 'cn.edu.zjut'
 version '1.0.0'
 
 repositories {
-    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    maven { url 'https://maven.aliyun.com/repository/google' }
+    maven { url 'https://maven.aliyun.com/repository/public' }
     mavenCentral()
 }
 
@@ -390,7 +392,7 @@ create database if not exists chtHibernateDb character set utf8mb4 collate utf8m
 
 修改项目目录下的`build.gradle`文件，然后添加以下两个依赖。修改后的`build.gradle`文件参考如下，然后build。
 
-``` hl_lines="28-33" 
+```groovy hl_lines="28-33" 
 plugins {
     id 'java'
     id 'war'
@@ -400,7 +402,8 @@ group 'cn.edu.zjut'
 version '1.0'
 
 repositories {
-    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    maven { url 'https://maven.aliyun.com/repository/google' }
+    maven { url 'https://maven.aliyun.com/repository/public' }
     mavenCentral()
 }
 
@@ -578,7 +581,8 @@ public class Customer implements Serializable {
 !!! info "注意事项"
     请将`$url`,`$user`,`$password`修改为自己的数据库配置。<br/>
     `driver_class`应当使用`com.mysql.cj.jdbc.Driver`，而不是`com.mysql.jdbc.Driver` <br/>
-    `$url`请以`?useUnicode=true&characterEncoding=utf8`结尾，来解决中文乱码的问题。在xml文档中，使用`?useUnicode=true&amp;characterEncoding=utf8`或者`<![CDATA[jdbc:mysql://$path?useUnicode=true&characterEncoding=utf8]]>`
+    `$url`请以`?useUnicode=true&characterEncoding=utf8`结尾，来解决中文乱码的问题。在xml文档中，使用`?useUnicode=true&amp;characterEncoding=utf8`或者`<![CDATA[jdbc:mysql://$path?useUnicode=true&characterEncoding=utf8]]>` <br/>
+    hibernate.dialect需要根据具体的数据库进行更改，当使用MySQL5.x版本时，需要使用`org.hibernate.dialect.MySQL5Dialect`，使用MySQL8.x版本时，需要使用`org.hibernate.dialect.MySQLDialect`
 
 ```xml hl_lines="8 11 14 17"
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -600,7 +604,7 @@ public class Customer implements Serializable {
             ${password}
         </property>
         <property name="hibernate.dialect">
-            org.hibernate.dialect.MySQLDialect
+            org.hibernate.dialect.MySQL5Dialect
         </property>
         <mapping resource="cn/edu/zjut/po/Customer.hbm.xml"/>
     </session-factory>
@@ -616,13 +620,15 @@ public class Customer implements Serializable {
 
 在`cn.edu.zjut.dao`中创建SessionUtil类，进行session的管理。
 
+!!! bug "代码漏洞"
+    下面的代码存在问题，请使用后面的会话管理的例子。
+
 ```java
 package cn.edu.zjut.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
 
 public class SessionUtil {
     private static Session session;
@@ -1265,6 +1271,150 @@ public abstract class BaseHibernateDao<TEntity, TKey> {
 ```
 
 #### HQL语句
+
+#### c3p0连接池
+
+我们需要注意，在hibernate 3.3版本之后，core包将不再包含c3p0的支持，详情可看[文章](https://blog.csdn.net/CCZUuniversity/article/details/77823574)
+
+因此，我们需要更新我们的`build.gradle`文件
+
+其中`5.4.24.Final`是目前最新的稳定版，在`Nov, 2020`发布。
+
+```gradle
+// hibernate
+compile 'org.hibernate:hibernate-core:5.4.24.Final'
+// hibernate-c3p0
+compile 'org.hibernate:hibernate-c3p0:5.4.24.Final'
+```
+
+然后更新`hibernate.cfg.xml`，添加的部分代码如下
+
+```xml
+<property name="hibernate.connection.provider_class">org.hibernate.c3p0.internal.C3P0ConnectionProvider</property>
+<property name="hibernate.show_sql">true</property>
+<property name="hibernate.format_sql">true</property>
+<property name="hibernate.use_sql_comments">true</property>
+<property name="hibernate.c3p0.max_size">20</property>
+<property name="hibernate.c3p0.min_size">1</property>
+<property name="hibernate.c3p0.timeout">1800</property>
+<property name="hibernate.c3p0.max_statements">50</property>
+```
+
+### 添加mybaties框架的支持
+
+#### 导入依赖
+
+在`build.gradle`中添加如下代码
+
+```groovy
+plugins {
+    id 'java'
+}
+
+group 'cn.edu.zjut'
+version '1.0.0'
+
+repositories {
+    maven { url 'https://maven.aliyun.com/repository/google' }
+    maven { url 'https://maven.aliyun.com/repository/public' }
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.6.2'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    // mybatis
+    compile 'org.mybatis:mybatis:3.5.6'
+    // mysql
+    compile 'mysql:mysql-connector-java:8.0.22'
+    // commons-logging
+    compile 'commons-logging:commons-logging:1.1.1'
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}
+```
+
+#### 创建数据库和数据表
+
+```sql
+create table user
+(
+	uid int not null comment '用户id',
+	uname varchar(20) null comment '用户名',
+	usex varchar(20) null comment '用户性别',
+	constraint user_pk
+		primary key (uid)
+);
+
+insert into user values (1, 'admin', 'man');
+insert into user values (2, 'test', 'woman');
+insert into user values (3, 'temp', 'man')
+```
+
+#### 创建po类和映射文件
+
+MyUser.java(package:cn.edu.zjut.po)
+
+```java
+package cn.edu.zjut.po;
+
+import java.io.Serializable;
+
+public class MyUser implements Serializable {
+    private Integer uid;
+    private String uname;
+    private String usex;
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
+
+    public String getUname() {
+        return uname;
+    }
+
+    public void setUname(String uname) {
+        this.uname = uname;
+    }
+
+    public String getUsex() {
+        return usex;
+    }
+
+    public void setUsex(String usex) {
+        this.usex = usex;
+    }
+}
+```
+
+mybatis-config.xml
+
+```
+```
+
+UserMapper.xml(package:cn.edu.zjut.mapper)
+
+!!! info "找不到DTD"
+    点开`File>Settings`找到`Schemas and DTDs`，添加一项 <br/>
+    uri=http://Mybatis.org/dtd/Mybatis-3-mapper.dtd <br/>
+    file=...org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd
+
+```xml
+```
+
 
 ## Hibernate框架个人理解
 

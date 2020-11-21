@@ -40,6 +40,7 @@ nav:
             - spring: notes/spring.md
             - Kotlin Web: notes/kotlin_web.md
             - asp.net core: notes/asp-web.md
+        - 项目管理: notes/tool.md
         - api: notes/api.md
         - Android: 
             - 原生: notes/android.md
