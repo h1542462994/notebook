@@ -100,6 +100,19 @@ test {
 }
 ```
 
+#### settings.gradle简介
+
+```groovy
+pluginManagement {
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://maven.aliyun.com/repository/spring-plugin' }
+    }
+}
+
+rootProject.name = 'test5'
+```
+
 ##### 换国内镜像源
 
 其中比较重要的是第10行，由于国内访问`mvnrepository`比较慢，因此经常使用国内的镜像源，下面列出常用的国内镜像源。
@@ -144,6 +157,14 @@ compile group: 'org.hibernate', name: 'hibernate-c3p0', version: '5.4.24.Final'
 compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.22'
 // mybatis,update:2020/10/6
 compile group: 'org.mybatis', name: 'mybatis', version: '3.5.6'
+// https://mvnrepository.com/artifact/org.springframework/spring-web +=2021/4/12
+implementation group: 'org.springframework', name: 'spring-web', version: '5.3.5'
+// https://mvnrepository.com/artifact/org.springframework/spring-jdbc +=2021/4/12
+implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.3.5'
+// https://mvnrepository.com/artifact/org.springframework/spring-hibernate +=2021/4/12
+implementation group: 'org.springframework', name: 'spring-hibernate', version: '1.2.9'
+// https://mvnrepository.com/artifact/com.mchange.c3p0/com.mchange.v2.c3p0
+implementation group: 'com.mchange.c3p0', name: 'com.mchange.v2.c3p0', version: '0.9.1.2'
 ```
 
 #### Q&A
